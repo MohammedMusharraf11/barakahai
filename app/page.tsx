@@ -52,13 +52,15 @@ export default function Page() {
           <p className="microcopy">A focused conversation. A clearer next step.</p>
         </div>
         <div className="hero-visual" aria-label="Illustration of an AI workflow connecting a customer message to business actions">
-          <div className="visual-label">WORKFLOW / 001</div>
-          <div className="orbit orbit-one" /><div className="orbit orbit-two" />
-          <div className="workflow-center"><LogoMark /><strong>Barakah<span>AI</span></strong><small>thinking alongside your team</small></div>
-          <div className="node node-top"><MessageCircle size={17} /><span>Customer message</span></div>
-          <div className="node node-right"><Zap size={17} /><span>Smart action</span></div>
-          <div className="node node-bottom"><Check size={17} /><span>Team notified</span></div>
-          <div className="visual-note">Designed around<br />your real work.</div>
+          <div className="visual-grid" aria-hidden="true" />
+          <div className="visual-label">BARAKAH / SYSTEM 001</div>
+          <div className="visual-status"><span /> READY TO WORK</div>
+          <div className="workflow-line line-a" /><div className="workflow-line line-b" /><div className="workflow-line line-c" />
+          <div className="workflow-center"><LogoMark /><strong>Barakah<span>AI</span></strong><small>your intelligent layer</small></div>
+          <div className="node node-top"><MessageCircle size={17} /><span>Customer message</span><b>01</b></div>
+          <div className="node node-right"><Zap size={17} /><span>Smart action</span><b>02</b></div>
+          <div className="node node-bottom"><Check size={17} /><span>Team notified</span><b>03</b></div>
+          <div className="visual-note">Connect the dots.<br /><i>Keep the judgement.</i></div>
         </div>
       </section>
 
