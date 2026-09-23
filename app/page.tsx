@@ -22,6 +22,12 @@ const faqs = [
   ["How do we get started?", "Book a consultation. We will use the conversation to understand your workflow, priorities, and what a sensible first step could be."],
 ]
 
+const logoUrl = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/barakahai_logo-TFi7FaV9im11hODPCMVerYOgIdb3SB.png"
+
+function BrandLogo({ compact = false }: { compact?: boolean }) {
+  return <img className={compact ? "brand-logo brand-logo-compact" : "brand-logo"} src={logoUrl} alt="BarakahAI — AI Automation Partner for Modern Businesses" />
+}
+
 function LogoMark() {
   return <span className="logo-mark" aria-hidden="true"><span /><span /><span /></span>
 }
@@ -30,11 +36,11 @@ export default function Page() {
   return (
     <main>
       <header className="site-header">
-        <Link className="wordmark" href="#top" aria-label="BarakahAI home"><LogoMark /> Barakah<span>AI</span></Link>
+        <Link className="wordmark" href="#top" aria-label="BarakahAI home"><BrandLogo compact /></Link>
         <nav className="desktop-nav" aria-label="Primary navigation">
-          <Link href="#solutions">Solutions</Link><Link href="#approach">How we work</Link><Link href="#faq">FAQ</Link>
+          <Link href="#solutions">Solutions</Link><Link href="#approach">Our approach</Link><Link href="#demo">Illustrative workflow</Link><Link href="#faq">FAQ</Link>
         </nav>
-        <Link className="button button-small button-dark" href="#contact">Book a consultation <ArrowUpRight size={15} /></Link>
+        <Link className="button button-small button-dark header-cta" href="#contact">Book a consultation <ArrowUpRight size={15} /></Link>
       </header>
 
       <section className="hero section-wrap" id="top">
@@ -76,7 +82,7 @@ export default function Page() {
 
       <section className="contact section-wrap" id="contact"><div><p className="eyebrow">Let&apos;s make work better</p><h2>Bring us the<br /><em>messy bit.</em></h2><p>Tell us what is slowing your team down. We will bring curiosity, clarity, and a practical point of view.</p></div><div className="contact-actions"><Link className="button button-accent" href="mailto:hello@barakahai.com">Book a consultation <ArrowUpRight size={17} /></Link><p>Prefer WhatsApp? <Link href="https://wa.me/" target="_blank">Start a conversation <ArrowUpRight size={14} /></Link></p></div></section>
 
-      <footer className="site-footer"><Link className="wordmark" href="#top"><LogoMark /> Barakah<span>AI</span></Link><p>AI automation with intention.</p><div><Link href="#solutions">Solutions</Link><Link href="#approach">Approach</Link><Link href="#contact">Contact</Link></div><small>© 2026 BarakahAI. All rights reserved.</small></footer>
+      <footer className="site-footer"><Link className="wordmark footer-brand" href="#top"><BrandLogo /></Link><p>AI automation with intention.</p><div><Link href="#solutions">Solutions</Link><Link href="#approach">Approach</Link><Link href="#contact">Contact</Link></div><small>© 2026 BarakahAI. All rights reserved.</small></footer>
     </main>
   )
 }
