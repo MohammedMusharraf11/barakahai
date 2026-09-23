@@ -50,12 +50,12 @@ export function ProcessRoadmap() {
         <svg className="roadmap-path" viewBox="0 0 100 1000" preserveAspectRatio="none" aria-hidden="true"><path className="roadmap-path-faint" d="M50 0 C50 120 18 140 18 250 S82 380 82 500 S18 630 18 750 S50 880 50 1000" /><path className="roadmap-path-drawn" d="M50 0 C50 120 18 140 18 250 S82 380 82 500 S18 630 18 750 S50 880 50 1000" /></svg>
         <div className="roadmap-start"><span className="roadmap-dot" /><span>Day 0: workflow teardown call</span></div>
         <ol className="roadmap-list">
-          {roadmapSteps.map((step, index) => <li className={`roadmap-item roadmap-item-${index % 2 ? "right" : "left"} ${activeStep >= index ? "is-active" : ""}`} data-roadmap-step={index} key={step.number}>
+          {roadmapSteps.map((step, index) => <li className={`roadmap-item roadmap-item-${index % 2 ? "right" : "left"} ${activeStep >= index ? "is-active" : ""}`} data-roadmap-step={index} style={{ "--step-index": index } as CSSProperties} key={step.number}>
             <button className="roadmap-node" type="button" aria-label={`Jump to step ${step.number}: ${step.title}`} onClick={() => document.getElementById(`roadmap-card-${step.number}`)?.scrollIntoView({ behavior: "smooth", block: "center" })}><span>{step.number}</span></button>
             <article className="roadmap-card" id={`roadmap-card-${step.number}`} tabIndex={-1}><div className="roadmap-card-top"><span className="roadmap-duration">{step.duration}</span>{step.humanLoop && <span className="human-loop"><UserRound size={13} /> Human in the loop</span>}</div><h3>{step.title}</h3><p>{step.text}</p><div className="deliverables"><strong>You get:</strong>{step.deliverables.map((item) => <span key={item}>{item}</span>)}</div></article>
           </li>)}
         </ol>
-        <div className="roadmap-checkpoint"><span>◆</span><p><strong>Go / no-go checkpoint</strong><br />You decide before any large commitment.</p></div>
+        <aside className="roadmap-checkpoint" aria-label="Go or no-go checkpoint"><div className="checkpoint-icon"><Check size={17} /></div><div><span className="checkpoint-kicker">Decision gate</span><p><strong>Go / no-go checkpoint</strong><br />You decide what happens next — before any large commitment.</p></div><span className="checkpoint-arrow" aria-hidden="true"><ArrowUpRight size={16} /></span></aside>
         <div className="roadmap-end"><span className="end-flag"><Check size={14} /></span><span>Live, documented, yours</span></div>
       </div>
       <Link className="button button-accent roadmap-cta" href="#contact">Start with a workflow teardown <ArrowUpRight size={16} /></Link>
