@@ -1,5 +1,6 @@
+import Image from "next/image"
 import Link from "next/link"
-import { ArrowUpRight, Bot, Check, ChevronDown, FileText, MessageCircle, Play, Sparkles, Workflow, Zap } from "lucide-react"
+import { ArrowUpRight, Bot, Check, ChevronDown, FileText, Mail, MessageCircle, Play, Sparkles, Workflow, Zap } from "lucide-react"
 
 const services = [
   { icon: Bot, title: "Agentic AI", text: "Purpose-built agents that move work forward, not just answer questions." },
@@ -51,11 +52,12 @@ export default function Page() {
           <div className="hero-actions"><Link className="button button-accent" href="#contact">Book a consultation <ArrowUpRight size={17} /></Link><Link className="text-link" href="#demo"><span className="play-icon"><Play size={12} fill="currentColor" /></span> See an illustrative workflow</Link></div>
           <p className="microcopy">A focused conversation. A clearer next step.</p>
         </div>
-        <div className="hero-visual" aria-label="Illustration of an AI workflow connecting a customer message to business actions">
-          <div className="visual-grid" aria-hidden="true" />
+        <div className="hero-visual" aria-label="Abstract illustration of an AI workflow connecting people, tools, and business actions">
+          <Image className="hero-art" src="/barakahai-hero.png" alt="Abstract green, mint, and amber illustration of connected AI workflows" fill priority sizes="(max-width: 760px) 100vw, 50vw" />
+          <div className="hero-art-wash" aria-hidden="true" />
           <div className="visual-label">BARAKAH / SYSTEM 001</div>
           <div className="visual-status"><span /> READY TO WORK</div>
-          <div className="workflow-line line-a" /><div className="workflow-line line-b" /><div className="workflow-line line-c" />
+          <div className="hero-orbit orbit-one" aria-hidden="true" /><div className="hero-orbit orbit-two" aria-hidden="true" />
           <div className="workflow-center"><LogoMark /><strong>Barakah<span>AI</span></strong><small>your intelligent layer</small></div>
           <div className="node node-top"><MessageCircle size={17} /><span>Customer message</span><b>01</b></div>
           <div className="node node-right"><Zap size={17} /><span>Smart action</span><b>02</b></div>
@@ -82,9 +84,9 @@ export default function Page() {
 
       <section className="faq section-wrap" id="faq"><div className="section-heading"><div><p className="eyebrow">Good questions</p><h2>Before we<br /><span>get started.</span></h2></div></div><div className="faq-list">{faqs.map(([question, answer]) => <details key={question}><summary>{question}<ChevronDown size={18} /></summary><p>{answer}</p></details>)}</div></section>
 
-      <section className="contact section-wrap" id="contact"><div><p className="eyebrow">Let&apos;s make work better</p><h2>Bring us the<br /><em>messy bit.</em></h2><p>Tell us what is slowing your team down. We will bring curiosity, clarity, and a practical point of view.</p></div><div className="contact-actions"><Link className="button button-accent" href="mailto:hello@barakahai.com">Book a consultation <ArrowUpRight size={17} /></Link><p>Prefer WhatsApp? <Link href="https://wa.me/" target="_blank">Start a conversation <ArrowUpRight size={14} /></Link></p></div></section>
+      <section className="contact section-wrap" id="contact"><div className="contact-intro"><p className="eyebrow">Let&apos;s make work better</p><h2>Bring us the<br /><em>messy bit.</em></h2><p>Tell us what is slowing your team down. We will bring curiosity, clarity, and a practical point of view.</p><div className="contact-details"><a href="mailto:hello@barakahai.com"><Mail size={15} /> hello@barakahai.com</a><span>Usually reply within one business day</span></div></div><form className="contact-form" action="mailto:hello@barakahai.com" method="post" encType="text/plain"><div className="form-row"><label>Your name<input name="name" type="text" placeholder="Jane Smith" required /></label><label>Work email<input name="email" type="email" placeholder="jane@company.com" required /></label></div><label>What would you like to improve?<textarea name="message" rows={4} placeholder="Tell us about the workflow, bottleneck, or opportunity..." required /></label><div className="form-submit"><button className="button button-accent" type="submit">Start the conversation <ArrowUpRight size={17} /></button><span>No sales pitch. Just a useful first conversation.</span></div></form></section>
 
-      <footer className="site-footer"><Link className="wordmark footer-brand" href="#top"><BrandLogo /></Link><p>AI automation with intention.</p><div><Link href="#solutions">Solutions</Link><Link href="#approach">Approach</Link><Link href="#contact">Contact</Link></div><small>© 2026 BarakahAI. All rights reserved.</small></footer>
+      <footer className="site-footer"><div className="footer-main"><div><Link className="wordmark footer-brand" href="#top"><BrandLogo /></Link><p className="footer-tagline">AI automation with intention.<br />Built around the way your team actually works.</p></div><div className="footer-links"><div><span>Explore</span><Link href="#solutions">Solutions</Link><Link href="#approach">Our approach</Link><Link href="#demo">Illustrative workflow</Link><Link href="#faq">FAQ</Link></div><div><span>Start here</span><Link href="#contact">Book a consultation</Link><a href="mailto:hello@barakahai.com">Email us</a><Link href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</Link></div></div></div><div className="footer-bottom"><small>© 2026 BarakahAI. All rights reserved.</small><span>Practical AI for modern businesses.</span><div className="footer-social"><Link href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</Link><Link href="https://www.instagram.com" target="_blank" rel="noreferrer">Instagram</Link></div></div></footer>
     </main>
   )
 }
