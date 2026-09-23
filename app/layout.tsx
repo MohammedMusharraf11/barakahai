@@ -3,9 +3,23 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.app',
+  title: 'BarakahAI — AI automation with intention',
+  description: 'BarakahAI helps modern businesses automate workflows, improve customer experiences, and increase productivity with practical AI.',
+  generator: 'BarakahAI',
+  metadataBase: new URL('https://barakahai.com'),
+  alternates: { canonical: '/' },
+  openGraph: {
+    title: 'BarakahAI — AI automation with intention',
+    description: 'Practical AI agents, automation, chatbots, and intelligent document workflows for modern businesses.',
+    url: 'https://barakahai.com',
+    siteName: 'BarakahAI',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'BarakahAI — AI automation with intention',
+    description: 'Practical AI automation for modern businesses.',
+  },
   icons: {
     icon: [
       {
