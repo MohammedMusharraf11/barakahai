@@ -1,19 +1,13 @@
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowUpRight, Bot, Check, ChevronDown, FileText, Mail, MessageCircle, Play, Sparkles, Workflow, Zap } from "lucide-react"
+import { ProcessRoadmap } from "@/components/process-roadmap"
 
 const services = [
   { icon: Bot, title: "Agentic AI", text: "Purpose-built agents that move work forward, not just answer questions." },
   { icon: MessageCircle, title: "AI chatbots & WhatsApp", text: "Helpful, on-brand conversations across the channels your customers already use." },
   { icon: Workflow, title: "Workflow automation", text: "Connect the tools, approvals, and handoffs that slow your team down." },
   { icon: FileText, title: "Intelligent documents", text: "Extract, classify, and route information from the documents your business depends on." },
-]
-
-const steps = [
-  ["01", "Map the opportunity", "We find the repetitive work, customer friction, and high-value handoffs worth improving."],
-  ["02", "Design a focused pilot", "You get a clear workflow, success criteria, and an implementation path before a large commitment."],
-  ["03", "Build, test, and refine", "We connect the right systems, test with real scenarios, and keep humans in control."],
-  ["04", "Handoff with confidence", "Your team gets documentation, ownership, and a practical next step for scaling."],
 ]
 
 const faqs = [
@@ -78,7 +72,7 @@ export default function Page() {
 
       <section className="services section-wrap" id="solutions"><div className="section-heading"><div><p className="eyebrow">What we build</p><h2>Practical intelligence,<br /><span>built for your world.</span></h2></div><Link className="text-link" href="#contact">Talk through your use case <ArrowUpRight size={15} /></Link></div><div className="service-grid">{services.map(({ icon: Icon, title, text }, i) => <article className={i === 0 ? "service-card service-featured" : "service-card"} key={title}><span className="service-number">0{i + 1}</span><Icon size={22} strokeWidth={1.5} /><h3>{title}</h3><p>{text}</p><span className="card-arrow"><ArrowUpRight size={17} /></span></article>)}</div><div className="also-build"><span>ALSO BUILDING</span><p>AI video creation <i>·</i> Voice AI <i>·</i> Custom integrations <i>·</i> Intelligent knowledge bases</p></div></section>
 
-      <section className="approach section-wrap" id="approach"><div className="section-heading"><div><p className="eyebrow">A considered approach</p><h2>Start small.<br /><span>Build what matters.</span></h2></div><p className="heading-note">No oversized promises.<br />Just a clear path forward.</p></div><div className="steps">{steps.map(([number, title, text]) => <article className="step" key={number}><span className="step-number">{number}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div></section>
+      <ProcessRoadmap />
 
       <section className="proof section-wrap"><div className="proof-card"><Sparkles size={23} /><p className="eyebrow">A transparent beginning</p><h2>We are building our<br /><em>proof in the open.</em></h2><p>BarakahAI is at the beginning of its journey. Rather than invent case studies or inflate numbers, we would rather show you how we think, build a useful pilot, and earn the right to share the outcome.</p><Link className="button button-light" href="#contact">Explore a pilot <ArrowUpRight size={16} /></Link></div></section>
 
