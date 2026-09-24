@@ -5,8 +5,10 @@
   "packageManager": "pnpm@12.3.4",
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/check-placeholders.mjs",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test:visual": "playwright test tests/visual-qa.spec.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",

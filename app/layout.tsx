@@ -1,24 +1,31 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
+import { Outfit } from 'next/font/google'
 import './globals.css'
 
+const outfit = Outfit({
+  subsets: ['latin'],
+  variable: '--font-outfit',
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
-  title: 'BarakahAI — AI automation with intention',
-  description: 'BarakahAI helps modern businesses automate workflows, improve customer experiences, and increase productivity with practical AI.',
+  title: 'BarakahAI — AI Automation Agency',
+  description: 'BarakahAI is an AI automation agency that designs, builds, and deploys intelligent systems to automate workflows, boost productivity, and scale your business.',
   generator: 'BarakahAI',
   metadataBase: new URL('https://barakahai.com'),
   alternates: { canonical: '/' },
   openGraph: {
-    title: 'BarakahAI — AI automation with intention',
-    description: 'Practical AI agents, automation, chatbots, and intelligent document workflows for modern businesses.',
+    title: 'BarakahAI — AI Automation Agency',
+    description: 'AI agents, workflow automation, conversational AI, and intelligent document processing for modern businesses.',
     url: 'https://barakahai.com',
     siteName: 'BarakahAI',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'BarakahAI — AI automation with intention',
-    description: 'Practical AI automation for modern businesses.',
+    title: 'BarakahAI — AI Automation Agency',
+    description: 'AI automation that actually delivers results.',
   },
   icons: {
     icon: [
@@ -40,11 +47,8 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  colorScheme: 'light dark',
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: 'black' },
-  ],
+  colorScheme: 'dark',
+  themeColor: '#050a0e',
 }
 
 export default function RootLayout({
@@ -54,7 +58,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">
+      <body className={`${outfit.variable} antialiased`}>
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

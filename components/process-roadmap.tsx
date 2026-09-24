@@ -1,72 +1,473 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import Link from "next/link"
-import { ArrowUpRight, Check, UserRound } from "lucide-react"
-
-const roadmapSteps = [
-  { number: "01", title: "Map the opportunity", text: "We find the repetitive work, customer friction, and high-value handoffs worth improving.", duration: "[DURATION_1]", deliverables: ["Workflow map", "Ranked opportunities"] },
-  { number: "02", title: "Design a focused pilot", text: "You get a clear workflow, success criteria, and an implementation path before a large commitment.", duration: "[DURATION_2]", deliverables: ["Scope", "Success metrics", "Implementation plan"] },
-  { number: "03", title: "Build, test, and refine", text: "We connect the right systems, test with real scenarios, and keep humans in control.", duration: "[DURATION_3]", deliverables: ["Working automation", "Test report", "Human-review rules"], humanLoop: true },
-  { number: "04", title: "Handoff with confidence", text: "Your team gets documentation, ownership, and a practical next step for scaling.", duration: "[DURATION_4]", deliverables: ["Documentation", "Ownership transfer", "Next-step plan"] },
-]
+import { ArrowUpRight, Check, UserRound, Sparkles, Compass } from "lucide-react"
+import { roadmapSteps } from "@/content/process"
 
 export function ProcessRoadmap() {
   const sectionRef = useRef<HTMLElement>(null)
+  const trackRef = useRef<HTMLDivElement>(null)
   const [progress, setProgress] = useState(0)
   const [activeStep, setActiveStep] = useState(0)
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null)
 
   useEffect(() => {
     const section = sectionRef.current
-    if (!section) return
-    const update = () => {
-      const rect = section.getBoundingClientRect()
-      const range = Math.max(section.offsetHeight - window.innerHeight, 1)
-      const next = Math.min(1, Math.max(0, -rect.top / range))
-      setProgress(next)
+    const track = trackRef.current
+    if (!section || !track) return
+
+    const handleScroll = () => {
+      const trackRect = track.getBoundingClientRect()
+      const windowHeight = window.innerHeight
+      const startOffset = windowHeight * 0.72
+      const totalScrollable = trackRect.height
+      const currentScroll = startOffset - trackRect.top
+      const pct = Math.min(1, Math.max(0, currentScroll / totalScrollable))
+      setProgress(pct)
+
+      // Step thresholds based on progress
+      if (pct >= 0.82) {
+        setActiveStep(4)
+      } else if (pct >= 0.62) {
+        setActiveStep(3)
+      } else if (pct >= 0.42) {
+        setActiveStep(2)
+      } else if (pct >= 0.2) {
+        setActiveStep(1)
+      } else if (pct >= 0.04) {
+        setActiveStep(0)
+      }
     }
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        window.addEventListener("scroll", update, { passive: true })
-        update()
-      } else window.removeEventListener("scroll", update)
-    }, { rootMargin: "120px 0px" })
-    const nodes = section.querySelectorAll("[data-roadmap-step]")
-    const nodeObserver = new IntersectionObserver((entries) => entries.forEach((entry) => {
-      if (entry.isIntersecting) setActiveStep((current) => Math.max(current, Number((entry.target as HTMLElement).dataset.roadmapStep)))
-    }), { threshold: 0.35 })
-    observer.observe(section)
-    nodes.forEach((node) => nodeObserver.observe(node))
-    return () => { observer.disconnect(); nodeObserver.disconnect(); window.removeEventListener("scroll", update) }
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    handleScroll()
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
   }, [])
 
+  const scrollToStep = (id: string) => {
+    const el = document.getElementById(id)
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "center" })
+    }
+  }
+
+  // Active step name calculation for dynamic status
+  const currentStepName =
+    activeStep === 0
+      ? "Phase 01 · Map the opportunity"
+      : activeStep === 1
+      ? "Phase 02 · Design a focused pilot"
+      : activeStep === 2
+      ? "Decision Gate · Go / no-go checkpoint"
+      : activeStep === 3
+      ? "Phase 03 · Build, test, and refine"
+      : "Phase 04 · Handoff with confidence"
+
   return (
-    <section className="approach roadmap-section" id="approach" ref={sectionRef} aria-labelledby="roadmap-title">
-      <div className="roadmap-heading">
-        <div><p className="eyebrow roadmap-eyebrow">How we work</p><h2 id="roadmap-title">Build what <em>matters.</em></h2></div>
-        <p>A focused pilot first. Scale only if it works.</p>
+    <section
+      className="approach roadmap-section full-bleed-dark"
+      id="process"
+      ref={sectionRef}
+      aria-labelledby="roadmap-title"
+    >
+      {/* Background ambient lighting orbs */}
+      <div className="roadmap-bg-glow-1" aria-hidden="true" />
+      <div className="roadmap-bg-glow-2" aria-hidden="true" />
+
+      <div className="roadmap-inner-wrapper">
+        {/* Header */}
+        <div className="roadmap-header">
+          <div className="flex items-center justify-between flex-wrap gap-4 mb-4">
+            <p className="eyebrow roadmap-eyebrow mb-0">
+              <span className="eyebrow-dot" /> How we work
+            </p>
+            {/* Live Progress Pill */}
+            <div className="roadmap-live-pill">
+              <span className="live-pill-dot" />
+              <span>{currentStepName}</span>
+            </div>
+          </div>
+
+          <h2 id="roadmap-title">
+            Build what <em>matters.</em>
+          </h2>
+          <p className="roadmap-subhead">
+            A focused pilot first. Scale only if it works.
+          </p>
+        </div>
+
+        {/* Roadmap Track */}
+        <div
+          ref={trackRef}
+          className="roadmap-track-container"
+          style={{ "--roadmap-progress": progress } as React.CSSProperties}
+        >
+          {/* Vertical Spine Layer behind cards */}
+          <div className="roadmap-spine-layer" aria-hidden="true">
+            <div className="roadmap-spine-base" />
+            <div
+              className="roadmap-spine-fill"
+              style={{ height: `${Math.min(100, Math.max(0, progress * 100))}%` }}
+            >
+              {/* Glowing Liquid Plasma Beam */}
+              <div className="spine-liquid-beam" />
+              {/* Glowing comet head at tip of scroll progress */}
+              <div className="roadmap-spine-comet">
+                <div className="comet-halo" />
+                <div className="comet-spark-1" />
+                <div className="comet-spark-2" />
+              </div>
+            </div>
+          </div>
+
+          {/* Day 0 Node (Top of Spine) */}
+          <div
+            className={`roadmap-day0-node ${progress > 0.02 ? "is-reached" : ""}`}
+            onClick={() => scrollToStep("roadmap-card-01")}
+            role="button"
+            tabIndex={0}
+            aria-label="Scroll to Day 0"
+          >
+            <span className="day0-dot">
+              <span className="day0-ping" />
+            </span>
+            <span className="day0-label">Day 0: workflow teardown call</span>
+          </div>
+
+          {/* Stepped Process List */}
+          <div className="roadmap-steps-flow">
+            {/* Step 01: Left */}
+            <div
+              className={`roadmap-row row-left ${activeStep >= 0 ? "is-active" : ""}`}
+              data-roadmap-step="0"
+            >
+              <div className="roadmap-card-col">
+                <article
+                  className={`roadmap-card ${hoveredCard === "01" ? "card-hovered" : ""}`}
+                  id="roadmap-card-01"
+                  onMouseEnter={() => setHoveredCard("01")}
+                  onMouseLeave={() => setHoveredCard(null)}
+                >
+                  <div className="card-ambient-light" />
+                  <div className="roadmap-card-top">
+                    {roadmapSteps[0].duration && (
+                      <span className="roadmap-duration">{roadmapSteps[0].duration}</span>
+                    )}
+                    <span className="step-indicator-pill">
+                      <span className="pill-pulse-dot" />
+                      Phase 01
+                    </span>
+                  </div>
+                  <h3>{roadmapSteps[0].title}</h3>
+                  <p>{roadmapSteps[0].text}</p>
+                  <div className="deliverables">
+                    <strong>You get:</strong>
+                    {roadmapSteps[0].deliverables.map((item, i) => (
+                      <span
+                        key={item}
+                        style={{ animationDelay: `${i * 120}ms` }}
+                        className="deliverable-pill"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </article>
+              </div>
+
+              {/* Laser Connector */}
+              <div className="roadmap-connector" aria-hidden="true">
+                <div className="connector-laser laser-left" />
+                <div className="connector-dock-dot dock-left" />
+              </div>
+
+              {/* Node on Spine */}
+              <div className="roadmap-node-col">
+                <button
+                  type="button"
+                  onClick={() => scrollToStep("roadmap-card-01")}
+                  className="roadmap-node"
+                  aria-label="Jump to Step 01: Map the opportunity"
+                >
+                  <span className="node-glow-ring" />
+                  <span className="node-outer-aura" />
+                  <span>01</span>
+                </button>
+              </div>
+              <div className="roadmap-empty-col" aria-hidden="true" />
+            </div>
+
+            {/* Step 02: Right */}
+            <div
+              className={`roadmap-row row-right ${activeStep >= 1 ? "is-active" : ""}`}
+              data-roadmap-step="1"
+            >
+              <div className="roadmap-empty-col" aria-hidden="true" />
+
+              {/* Node on Spine */}
+              <div className="roadmap-node-col">
+                <button
+                  type="button"
+                  onClick={() => scrollToStep("roadmap-card-02")}
+                  className="roadmap-node"
+                  aria-label="Jump to Step 02: Design a focused pilot"
+                >
+                  <span className="node-glow-ring" />
+                  <span className="node-outer-aura" />
+                  <span>02</span>
+                </button>
+              </div>
+
+              {/* Laser Connector */}
+              <div className="roadmap-connector" aria-hidden="true">
+                <div className="connector-laser laser-right" />
+                <div className="connector-dock-dot dock-right" />
+              </div>
+
+              <div className="roadmap-card-col">
+                <article
+                  className={`roadmap-card ${hoveredCard === "02" ? "card-hovered" : ""}`}
+                  id="roadmap-card-02"
+                  onMouseEnter={() => setHoveredCard("02")}
+                  onMouseLeave={() => setHoveredCard(null)}
+                >
+                  <div className="card-ambient-light" />
+                  <div className="roadmap-card-top">
+                    {roadmapSteps[1].duration && (
+                      <span className="roadmap-duration">{roadmapSteps[1].duration}</span>
+                    )}
+                    <span className="step-indicator-pill">
+                      <span className="pill-pulse-dot" />
+                      Phase 02
+                    </span>
+                  </div>
+                  <h3>{roadmapSteps[1].title}</h3>
+                  <p>{roadmapSteps[1].text}</p>
+                  <div className="deliverables">
+                    <strong>You get:</strong>
+                    {roadmapSteps[1].deliverables.map((item, i) => (
+                      <span
+                        key={item}
+                        style={{ animationDelay: `${i * 120}ms` }}
+                        className="deliverable-pill"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            {/* Decision Gate: Between Step 02 and 03 */}
+            <div
+              className={`roadmap-decision-gate-row ${activeStep >= 2 ? "is-active" : ""}`}
+              data-roadmap-step="2"
+            >
+              <div className="gate-callout-col">
+                <aside
+                  className="decision-gate-callout"
+                  id="decision-gate"
+                  aria-label="Decision Gate Checkpoint"
+                >
+                  <div className="callout-shimmer-border" />
+                  <div className="callout-icon">
+                    <Check size={16} />
+                  </div>
+                  <div className="callout-text">
+                    <span className="callout-kicker">
+                      <Sparkles size={12} className="inline mr-1 text-[var(--gold-500)]" />
+                      DECISION GATE
+                    </span>
+                    <h4>Go / no-go checkpoint</h4>
+                    <p>You decide what happens next — before any large commitment.</p>
+                  </div>
+                  <span className="callout-badge" aria-hidden="true">
+                    <ArrowUpRight size={15} />
+                  </span>
+                </aside>
+              </div>
+
+              {/* Gate Connector */}
+              <div className="gate-connector" aria-hidden="true">
+                <div className="connector-laser laser-left" />
+                <div className="connector-dock-dot dock-left" />
+              </div>
+
+              {/* Diamond Node on Spine */}
+              <div className="gate-node-col">
+                <button
+                  type="button"
+                  onClick={() => scrollToStep("decision-gate")}
+                  className="decision-diamond-node"
+                  aria-label="Jump to Decision Gate Checkpoint"
+                  title="Decision Gate"
+                >
+                  <span className="diamond-glow-ring" />
+                  <span className="diamond-outer-aura" />
+                  <div className="diamond-shape" />
+                </button>
+              </div>
+              <div className="gate-empty-col" aria-hidden="true" />
+            </div>
+
+            {/* Step 03: Left */}
+            <div
+              className={`roadmap-row row-left ${activeStep >= 3 ? "is-active" : ""}`}
+              data-roadmap-step="3"
+            >
+              <div className="roadmap-card-col">
+                <article
+                  className={`roadmap-card ${hoveredCard === "03" ? "card-hovered" : ""}`}
+                  id="roadmap-card-03"
+                  onMouseEnter={() => setHoveredCard("03")}
+                  onMouseLeave={() => setHoveredCard(null)}
+                >
+                  <div className="card-ambient-light" />
+                  <div className="roadmap-card-top">
+                    {roadmapSteps[2].duration && (
+                      <span className="roadmap-duration">{roadmapSteps[2].duration}</span>
+                    )}
+                    {roadmapSteps[2].humanLoop && (
+                      <span className="human-loop">
+                        <UserRound size={14} /> Human in the loop
+                      </span>
+                    )}
+                    <span className="step-indicator-pill">
+                      <span className="pill-pulse-dot" />
+                      Phase 03
+                    </span>
+                  </div>
+                  <h3>{roadmapSteps[2].title}</h3>
+                  <p>{roadmapSteps[2].text}</p>
+                  <div className="deliverables">
+                    <strong>You get:</strong>
+                    {roadmapSteps[2].deliverables.map((item, i) => (
+                      <span
+                        key={item}
+                        style={{ animationDelay: `${i * 120}ms` }}
+                        className="deliverable-pill"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </article>
+              </div>
+
+              {/* Laser Connector */}
+              <div className="roadmap-connector" aria-hidden="true">
+                <div className="connector-laser laser-left" />
+                <div className="connector-dock-dot dock-left" />
+              </div>
+
+              {/* Node on Spine */}
+              <div className="roadmap-node-col">
+                <button
+                  type="button"
+                  onClick={() => scrollToStep("roadmap-card-03")}
+                  className="roadmap-node"
+                  aria-label="Jump to Step 03: Build, test, and refine"
+                >
+                  <span className="node-glow-ring" />
+                  <span className="node-outer-aura" />
+                  <span>03</span>
+                </button>
+              </div>
+              <div className="roadmap-empty-col" aria-hidden="true" />
+            </div>
+
+            {/* Step 04: Right */}
+            <div
+              className={`roadmap-row row-right ${activeStep >= 4 ? "is-active" : ""}`}
+              data-roadmap-step="4"
+            >
+              <div className="roadmap-empty-col" aria-hidden="true" />
+
+              {/* Node on Spine */}
+              <div className="roadmap-node-col">
+                <button
+                  type="button"
+                  onClick={() => scrollToStep("roadmap-card-04")}
+                  className="roadmap-node"
+                  aria-label="Jump to Step 04: Handoff with confidence"
+                >
+                  <span className="node-glow-ring" />
+                  <span className="node-outer-aura" />
+                  <span>04</span>
+                </button>
+              </div>
+
+              {/* Laser Connector */}
+              <div className="roadmap-connector" aria-hidden="true">
+                <div className="connector-laser laser-right" />
+                <div className="connector-dock-dot dock-right" />
+              </div>
+
+              <div className="roadmap-card-col">
+                <article
+                  className={`roadmap-card ${hoveredCard === "04" ? "card-hovered" : ""}`}
+                  id="roadmap-card-04"
+                  onMouseEnter={() => setHoveredCard("04")}
+                  onMouseLeave={() => setHoveredCard(null)}
+                >
+                  <div className="card-ambient-light" />
+                  <div className="roadmap-card-top">
+                    {roadmapSteps[3].duration && (
+                      <span className="roadmap-duration">{roadmapSteps[3].duration}</span>
+                    )}
+                    <span className="step-indicator-pill">
+                      <span className="pill-pulse-dot" />
+                      Phase 04
+                    </span>
+                  </div>
+                  <h3>{roadmapSteps[3].title}</h3>
+                  <p>{roadmapSteps[3].text}</p>
+                  <div className="deliverables">
+                    <strong>You get:</strong>
+                    {roadmapSteps[3].deliverables.map((item, i) => (
+                      <span
+                        key={item}
+                        style={{ animationDelay: `${i * 120}ms` }}
+                        className="deliverable-pill"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          {/* End Flag (Bottom of Spine) */}
+          <div className={`roadmap-end-node ${progress >= 0.88 ? "is-reached" : ""}`}>
+            <span className="end-flag-circle">
+              <Check size={17} strokeWidth={2.5} />
+              <span className="flag-ping" />
+              <span className="flag-outer-glow" />
+            </span>
+            <span className="end-flag-label">Live, documented, yours</span>
+          </div>
+        </div>
+
+        {/* Primary CTA on Dark background: gold-500 fill with ink text */}
+        <div className="roadmap-cta-wrap">
+          <Link className="button button-gold-dark group" href="#contact">
+            Start with a workflow teardown{" "}
+            <ArrowUpRight
+              size={17}
+              className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            />
+          </Link>
+        </div>
       </div>
-      <div className="roadmap-track" style={{ "--roadmap-progress": progress } as CSSProperties}>
-        <svg className="roadmap-path" viewBox="0 0 100 1000" preserveAspectRatio="none" aria-hidden="true"><path className="roadmap-path-faint" d="M50 0 C50 120 18 140 18 250 S82 380 82 500 S18 630 18 750 S50 880 50 1000" /><path className="roadmap-path-drawn" d="M50 0 C50 120 18 140 18 250 S82 380 82 500 S18 630 18 750 S50 880 50 1000" /></svg>
-        <div className="roadmap-start"><span className="roadmap-dot" /><span>Day 0: workflow teardown call</span></div>
-        <ol className="roadmap-list">
-          {roadmapSteps.map((step, index) => <li className={`roadmap-item roadmap-item-${index % 2 ? "right" : "left"} ${activeStep >= index ? "is-active" : ""}`} data-roadmap-step={index} style={{ "--step-index": index } as CSSProperties} key={step.number}>
-            <button className="roadmap-node" type="button" aria-label={`Jump to step ${step.number}: ${step.title}`} onClick={() => document.getElementById(`roadmap-card-${step.number}`)?.scrollIntoView({ behavior: "smooth", block: "center" })}><span>{step.number}</span></button>
-            <article className="roadmap-card" id={`roadmap-card-${step.number}`} tabIndex={-1}><div className="roadmap-card-top"><span className="roadmap-duration">{step.duration}</span>{step.humanLoop && <span className="human-loop"><UserRound size={13} /> Human in the loop</span>}</div><h3>{step.title}</h3><p>{step.text}</p><div className="deliverables"><strong>You get:</strong>{step.deliverables.map((item) => <span key={item}>{item}</span>)}</div></article>
-          </li>)}
-        </ol>
-        <aside className="roadmap-checkpoint" aria-label="Go or no-go checkpoint"><div className="checkpoint-icon"><Check size={17} /></div><div><span className="checkpoint-kicker">Decision gate</span><p><strong>Go / no-go checkpoint</strong><br />You decide what happens next — before any large commitment.</p></div><span className="checkpoint-arrow" aria-hidden="true"><ArrowUpRight size={16} /></span></aside>
-        <div className="roadmap-end"><span className="end-flag"><Check size={14} /></span><span>Live, documented, yours</span></div>
-      </div>
-      <Link className="button button-accent roadmap-cta" href="#contact">Start with a workflow teardown <ArrowUpRight size={16} /></Link>
     </section>
   )
 }
 
 export default ProcessRoadmap
-
-// TODO: replace [DURATION_1] through [DURATION_4] with confirmed commitments.
-// TODO: replace the illustrative workflow language only when real proof is available.
-// TODO: use the provided source image description: cream editorial roadmap with italic green heading and four numbered rows as the visual reference.
-
-interface CSSProperties { [key: string]: string | number }
