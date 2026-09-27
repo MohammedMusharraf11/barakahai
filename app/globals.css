@@ -2100,17 +2100,80 @@ button, a { -webkit-tap-highlight-color: transparent; cursor: pointer; }
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
 }
-.contact-info a {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 17px;
-  font-weight: 700;
+
+.contact-details-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px 20px;
+  margin-bottom: 20px;
+}
+.contact-detail-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 13.5px;
+  color: var(--t-hi);
+  line-height: 1.45;
+}
+.contact-detail-item svg {
+  flex-shrink: 0;
+  margin-top: 2px;
   color: var(--em);
 }
-.contact-info > span { font-size: 13px; color: var(--t-low); }
+.contact-detail-label {
+  display: block;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2px;
+}
+.contact-detail-val {
+  font-size: 13.5px;
+  color: var(--t-hi);
+  font-weight: 500;
+  margin: 0;
+}
+.contact-links-inline {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.contact-links-inline a, .contact-detail-item a {
+  color: var(--t-hi);
+  font-weight: 600;
+  font-size: 13.5px;
+  transition: color 0.2s;
+}
+.contact-links-inline a:hover, .contact-detail-item a:hover {
+  color: var(--em);
+}
+.contact-sep {
+  color: var(--t-low);
+  font-weight: 700;
+}
+.footer-address-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--t-mid);
+  margin-top: 14px;
+  line-height: 1.5;
+}
+.footer-address-box svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+  color: var(--em);
+}
 
 .contact-guarantees {
   display: flex;

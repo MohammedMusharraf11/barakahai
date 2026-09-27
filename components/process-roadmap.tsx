@@ -58,14 +58,14 @@ export function ProcessRoadmap() {
   // Active step name calculation for dynamic status
   const currentStepName =
     activeStep === 0
-      ? "Phase 01 · Map the opportunity"
+      ? "Step 01 · Find your biggest time-wasters"
       : activeStep === 1
-      ? "Phase 02 · Design a focused pilot"
+      ? "Step 02 · See a working test in 7 days"
       : activeStep === 2
-      ? "Decision Gate · Go / no-go checkpoint"
+      ? "Your Choice · Continue only if you love it"
       : activeStep === 3
-      ? "Phase 03 · Build, test, and refine"
-      : "Phase 04 · Handoff with confidence"
+      ? "Step 03 · Connect to your everyday tools"
+      : "Step 04 · Runs quietly on autopilot"
 
   return (
     <section
@@ -93,10 +93,10 @@ export function ProcessRoadmap() {
           </div>
 
           <h2 id="roadmap-title">
-            Build what <em>matters.</em>
+            Simple, honest steps. <em>Zero guesswork.</em>
           </h2>
           <p className="roadmap-subhead">
-            A focused pilot first. Scale only if it works.
+            Try a working sample first. Only continue if it clearly saves your team hours.
           </p>
         </div>
 
@@ -135,7 +135,7 @@ export function ProcessRoadmap() {
             <span className="day0-dot">
               <span className="day0-ping" />
             </span>
-            <span className="day0-label">Day 0: workflow teardown call</span>
+            <span className="day0-label">Day 0: 15-minute quick discovery call</span>
           </div>
 
           {/* Stepped Process List */}
@@ -159,7 +159,7 @@ export function ProcessRoadmap() {
                     )}
                     <span className="step-indicator-pill">
                       <span className="pill-pulse-dot" />
-                      Phase 01
+                      Step 01
                     </span>
                   </div>
                   <h3>{roadmapSteps[0].title}</h3>
@@ -242,7 +242,7 @@ export function ProcessRoadmap() {
                     )}
                     <span className="step-indicator-pill">
                       <span className="pill-pulse-dot" />
-                      Phase 02
+                      Step 02
                     </span>
                   </div>
                   <h3>{roadmapSteps[1].title}</h3>
@@ -280,10 +280,10 @@ export function ProcessRoadmap() {
                   </div>
                   <div className="callout-text">
                     <span className="callout-kicker">
-                      DECISION GATE
+                      YOUR CHOICE
                     </span>
-                    <h4>Go / no-go checkpoint</h4>
-                    <p>You decide what happens next — before any large commitment.</p>
+                    <h4>Try before you decide</h4>
+                    <p>If you love the test sample, we roll it out. If not, you walk away with zero obligations.</p>
                   </div>
                   <span className="callout-badge" aria-hidden="true">
                     <ArrowUpRight size={15} />
@@ -333,12 +333,12 @@ export function ProcessRoadmap() {
                     )}
                     {roadmapSteps[2].humanLoop && (
                       <span className="human-loop">
-                        <UserRound size={14} /> Human in the loop
+                        <UserRound size={14} /> You stay in full control
                       </span>
                     )}
                     <span className="step-indicator-pill">
                       <span className="pill-pulse-dot" />
-                      Phase 03
+                      Step 03
                     </span>
                   </div>
                   <h3>{roadmapSteps[2].title}</h3>
@@ -421,7 +421,7 @@ export function ProcessRoadmap() {
                     )}
                     <span className="step-indicator-pill">
                       <span className="pill-pulse-dot" />
-                      Phase 04
+                      Step 04
                     </span>
                   </div>
                   <h3>{roadmapSteps[3].title}</h3>
@@ -450,14 +450,14 @@ export function ProcessRoadmap() {
               <span className="flag-ping" />
               <span className="flag-outer-glow" />
             </span>
-            <span className="end-flag-label">Live, documented, yours</span>
+            <span className="end-flag-label">Live, tested, and saving hours</span>
           </div>
         </div>
 
         {/* Primary CTA on Dark background: gold-500 fill with ink text */}
         <div className="roadmap-cta-wrap">
           <Link className="button button-gold-dark group" href="#contact">
-            Start with a workflow teardown{" "}
+            Book a Free 15-Minute Audit{" "}
             <ArrowUpRight
               size={17}
               className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"

@@ -39,7 +39,7 @@ const cannedReplies: Record<string, string> = {
   automate:
     "We automate repetitive computer tasks — answering customer WhatsApp messages in 20 seconds, reading invoice PDFs without manual typing, answering employee questions using your company guides, and turning plain English questions into sales charts.",
   call:
-    "You can schedule a free, zero-pressure 15-minute automation audit directly on this page! Just scroll down to our contact form or email us at hello@barakahai.com.",
+    "You can schedule a free, zero-pressure 15-minute automation audit directly on this page! Just scroll down to our contact form, email us at info@barakahai.com, or call us at +91 90366 00668.",
 }
 
 export function ChatWidget() {

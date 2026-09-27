@@ -9,6 +9,9 @@ import {
   Users,
   ArrowRight,
   CheckCircle2,
+  Phone,
+  MapPin,
+  Globe,
 } from "lucide-react"
 import { Logo } from "@/components/logo"
 import { ScrollRevealProvider } from "@/components/scroll-reveal"
@@ -62,7 +65,7 @@ export default function Page() {
             <Link href="#services">Services</Link>
             <Link href="#products">Products</Link>
             <Link href="#testimonials">Reviews</Link>
-            <Link href="#process">Blueprint</Link>
+            <Link href="#process">How We Work</Link>
             <Link href="#faq">FAQ</Link>
           </nav>
           <Link className="btn-primary btn-sm btn-shimmer" href="#contact">
@@ -220,52 +223,55 @@ export default function Page() {
               We will review your operational setup and provide a concrete, actionable automation roadmap.
             </p>
 
-            {/* What to Expect on Call Friction Reducer */}
-            <div className="call-roadmap-card">
-              <h4>What to Expect on Your Free Call</h4>
-              <div className="call-steps-list">
-                <div className="call-step-item">
-                  <span className="call-step-num">1</span>
-                  <div>
-                    <strong>15-Minute Operational Audit</strong>
-                    <p>We map your team&apos;s single biggest manual bottleneck or spreadsheet drag.</p>
-                  </div>
+            <div className="contact-details-card">
+              <div className="contact-detail-item">
+                <MapPin size={18} className="text-cyan" />
+                <div>
+                  <span className="contact-detail-label">OFFICE LOCATION</span>
+                  <p className="contact-detail-val">54/1, 3rd Cross, Popular Colony, Bommanahalli, Bangalore 560068</p>
                 </div>
-                <div className="call-step-item">
-                  <span className="call-step-num">2</span>
-                  <div>
-                    <strong>Candid Feasibility &amp; ROI Check</strong>
-                    <p>We calculate honestly if custom AI makes financial sense for your volume.</p>
-                  </div>
-                </div>
-                <div className="call-step-item">
-                  <span className="call-step-num">3</span>
-                  <div>
-                    <strong>Custom Deployment Blueprint</strong>
-                    <p>You receive an actionable workflow architecture you keep regardless.</p>
+              </div>
+
+              <div className="contact-detail-item">
+                <Phone size={18} className="text-cyan" />
+                <div>
+                  <span className="contact-detail-label">PHONE &amp; WHATSAPP</span>
+                  <div className="contact-links-inline">
+                    <a href="tel:+919036600668">+91 90366 00668</a>
+                    <span className="contact-sep">·</span>
+                    <a href="tel:+918040906478">+91 80-40906478</a>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className="contact-info">
-              <a href="mailto:hello@barakahai.com">
-                <Mail size={16} /> hello@barakahai.com
-              </a>
-              <span>Usually reply within 4 hours during business days</span>
+              <div className="contact-detail-item">
+                <Mail size={18} className="text-cyan" />
+                <div>
+                  <span className="contact-detail-label">EMAIL INQUIRIES</span>
+                  <a href="mailto:info@barakahai.com" className="contact-detail-val">info@barakahai.com</a>
+                </div>
+              </div>
+
+              <div className="contact-detail-item">
+                <Globe size={18} className="text-cyan" />
+                <div>
+                  <span className="contact-detail-label">WEBSITE</span>
+                  <a href="https://www.barakahai.com" target="_blank" rel="noreferrer" className="contact-detail-val">www.barakahai.com</a>
+                </div>
+              </div>
             </div>
 
             <div className="contact-guarantees">
               <div className="c-guarantee">
-                <CheckCircle2 size={14} className="text-cyan-400" />
+                <CheckCircle2 size={14} className="text-cyan" />
                 <span>Zero high-pressure sales pitch</span>
               </div>
               <div className="c-guarantee">
-                <CheckCircle2 size={14} className="text-cyan-400" />
+                <CheckCircle2 size={14} className="text-cyan" />
                 <span>Mutual NDA signed upfront upon request</span>
               </div>
               <div className="c-guarantee">
-                <CheckCircle2 size={14} className="text-cyan-400" />
+                <CheckCircle2 size={14} className="text-cyan" />
                 <span>Custom architecture assessment included</span>
               </div>
             </div>
@@ -273,7 +279,7 @@ export default function Page() {
 
           <form
             className="contact-form reveal-item"
-            action="mailto:hello@barakahai.com"
+            action="mailto:info@barakahai.com"
             method="post"
             encType="text/plain"
           >
@@ -326,6 +332,10 @@ export default function Page() {
                 Production AI systems & autonomous workflows built with intention.<br />
                 Eliminating manual friction so growing teams can scale with leverage.
               </p>
+              <div className="footer-address-box">
+                <MapPin size={15} className="text-cyan" />
+                <span>54/1, 3rd Cross, Popular Colony, Bommanahalli, Bangalore 560068</span>
+              </div>
             </div>
             <div className="footer-links">
               <div>
@@ -334,21 +344,27 @@ export default function Page() {
                 <Link href="#services">Services</Link>
                 <Link href="#products">Products</Link>
                 <Link href="#testimonials">Reviews</Link>
-                <Link href="#process">Deployment Blueprint</Link>
+                <Link href="#process">How We Work</Link>
                 <Link href="#faq">FAQ</Link>
+              </div>
+              <div>
+                <span>Contact Details</span>
+                <a href="mailto:info@barakahai.com">info@barakahai.com</a>
+                <a href="tel:+919036600668">+91 90366 00668</a>
+                <a href="tel:+918040906478">+91 80-40906478</a>
+                <a href="https://www.barakahai.com" target="_blank" rel="noreferrer">www.barakahai.com</a>
               </div>
               <div>
                 <span>Engage</span>
                 <Link href="#contact">Book Consultation</Link>
-                <a href="mailto:hello@barakahai.com">hello@barakahai.com</a>
                 <Link href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</Link>
-                <Link href="https://twitter.com" target="_blank" rel="noreferrer">X / Twitter</Link>
+                <Link href="https://www.instagram.com" target="_blank" rel="noreferrer">Instagram</Link>
               </div>
             </div>
           </div>
           <div className="footer-bottom">
             <small>© 2026 BarakahAI. All rights reserved.</small>
-            <span>Production-grade AI automation architectures.</span>
+            <span>54/1, 3rd Cross, Popular Colony, Bommanahalli, Bangalore 560068</span>
             <div>
               <Link href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</Link>
               <Link href="https://www.instagram.com" target="_blank" rel="noreferrer">Instagram</Link>
