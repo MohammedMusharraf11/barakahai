@@ -3,32 +3,22 @@
 import React from "react"
 
 const integrations = [
-  { name: "OpenAI", category: "LLM Core" },
-  { name: "Anthropic Claude", category: "Reasoning" },
-  { name: "n8n", category: "Orchestration" },
-  { name: "Make.com", category: "Automations" },
-  { name: "LangChain", category: "Agent Framework" },
-  { name: "HubSpot", category: "CRM" },
-  { name: "Salesforce", category: "Enterprise CRM" },
-  { name: "Slack", category: "Team Comms" },
-  { name: "PostgreSQL", category: "Database" },
-  { name: "Supabase", category: "Vector / Auth" },
-  { name: "Stripe", category: "Payments" },
-  { name: "WhatsApp API", category: "Messaging" },
-  { name: "Twilio", category: "Voice / SMS" },
-  { name: "Notion", category: "Knowledge Base" },
-  { name: "NetSuite", category: "ERP" },
+  { name: "WhatsApp", category: "Customer Messaging" },
+  { name: "Slack", category: "Team Communications" },
+  { name: "HubSpot", category: "CRM & Sales Pipeline" },
+  { name: "Stripe", category: "Billing & Invoicing" },
+  { name: "Google Workspace", category: "Docs, Sheets & Gmail" },
 ]
 
 export function IntegrationMarquee() {
   return (
     <div className="marquee-wrapper">
       <div className="marquee-label-top">
-        <span>SEAMLESSLY INTEGRATING WITH YOUR EXISTING TECH STACK</span>
+        <span>CONNECTS SEAMLESSLY WITH THE TOOLS YOU ALREADY USE</span>
       </div>
       <div className="marquee-track-container">
         <div className="marquee-track">
-          {[...integrations, ...integrations].map((item, idx) => (
+          {[...integrations, ...integrations, ...integrations, ...integrations].map((item, idx) => (
             <div key={`${item.name}-${idx}`} className="marquee-chip">
               <span className="marquee-dot" />
               <span className="marquee-name">{item.name}</span>

@@ -13,7 +13,6 @@ import {
   RefreshCw,
   Sliders,
   Layers,
-  Sparkles,
 } from "lucide-react"
 
 interface PipelineStep {
@@ -287,7 +286,6 @@ export function AgencyAgentRunner() {
           </div>
 
           <div className="runner-summary-box">
-            <Sparkles size={14} className="text-amber-400 flex-shrink-0" />
             <span>{scenario.outputSummary}</span>
           </div>
         </div>

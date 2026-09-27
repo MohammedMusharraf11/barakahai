@@ -9,7 +9,6 @@ import {
   FileText,
   Boxes,
   Clock,
-  Sparkles,
   Bot,
   User,
   ArrowRight,
@@ -326,7 +325,6 @@ export function DemoShowcase() {
               <div className="output-card extraction-card">
                 <div className="output-card-title flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Sparkles size={16} className="text-[var(--gold-700)]" />
                     <h4>Structured Extraction</h4>
                   </div>
                   <span

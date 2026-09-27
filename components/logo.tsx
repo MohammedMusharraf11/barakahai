@@ -14,26 +14,26 @@ export function Logo({
   height = 42,
   showTagline = false,
 }: LogoProps) {
-  // new-logo.png dimensions are 1286 x 1223 (~1.05 aspect ratio)
+  // logo_v1.png dimensions are 1294 x 1216 (~1.064 aspect ratio)
   const iconHeight = height
-  const iconWidth = Math.round(height * (1286 / 1223))
+  const iconWidth = Math.round(height * (1294 / 1216))
 
   return (
     <div
       className={`group flex items-center gap-3 select-none cursor-pointer ${className}`}
       aria-label="BarakahAI Home"
     >
-      {/* 3D Ribbon Symbol from new-logo.png */}
+      {/* 3D Emblem Symbol from logo_v1.png */}
       <div
         className="relative flex items-center justify-center flex-shrink-0 transition-transform duration-300 ease-out group-hover:scale-108 group-hover:rotate-1"
         style={{ width: iconWidth, height: iconHeight }}
       >
         <Image
-          src="/new-logo.png"
+          src="/logo_v1.png"
           alt="BarakahAI Mark"
           width={iconWidth * 2}
           height={iconHeight * 2}
-          className="w-full h-full object-contain filter drop-shadow-[0_0_14px_rgba(0,217,126,0.38)] transition-all duration-300 group-hover:drop-shadow-[0_0_22px_rgba(0,217,126,0.65)]"
+          className="w-full h-full object-contain filter drop-shadow-[0_0_16px_rgba(0,210,255,0.45)] transition-all duration-300 group-hover:drop-shadow-[0_0_26px_rgba(0,210,255,0.8)]"
           priority
         />
       </div>
@@ -49,13 +49,13 @@ export function Logo({
           }}
         >
           <span>Barakah</span>
-          <span className="bg-gradient-to-r from-[#00d97e] via-[#5ee082] to-[#e8b84b] bg-clip-text text-transparent ml-0.5 filter drop-shadow-[0_0_12px_rgba(0,217,126,0.25)]">
+          <span className="bg-gradient-to-r from-[#00d2ff] via-[#38bdf8] to-[#0070f3] bg-clip-text text-transparent ml-0.5 filter drop-shadow-[0_0_12px_rgba(0,210,255,0.35)]">
             AI
           </span>
         </span>
         {showTagline && (
           <span
-            className="text-[9px] tracking-[0.14em] font-semibold text-[#8fa89a] uppercase mt-0.5"
+            className="text-[9px] tracking-[0.14em] font-semibold text-[#8fa7c4] uppercase mt-0.5"
             style={{ fontFamily: "var(--sans)" }}
           >
             Automation Systems

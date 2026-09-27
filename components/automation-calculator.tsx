@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react"
 import Link from "next/link"
-import { ArrowUpRight, Calculator, CheckCircle2, TrendingUp, Sparkles, Cpu, Clock, DollarSign, Users } from "lucide-react"
+import { ArrowUpRight, Calculator, CheckCircle2, TrendingUp, Cpu, Clock, DollarSign, Users } from "lucide-react"
 
 function SmoothCounter({
   value,

@@ -2,15 +2,8 @@ import React from "react"
 import Link from "next/link"
 import {
   ArrowUpRight,
-  Bot,
-  Brain,
   ChevronDown,
-  FileText,
-  Layers,
   Mail,
-  MessageCircle,
-  Workflow,
-  Zap,
   Shield,
   Clock,
   Users,
@@ -20,98 +13,37 @@ import {
 import { Logo } from "@/components/logo"
 import { ScrollRevealProvider } from "@/components/scroll-reveal"
 import { IntegrationMarquee } from "@/components/integration-marquee"
-import { AutomationCalculator } from "@/components/automation-calculator"
 import { BeforeAfter } from "@/components/before-after"
 import { ProcessRoadmap } from "@/components/process-roadmap"
-import { AnimatedCounter } from "@/components/counter"
-
-const services = [
-  {
-    icon: Bot,
-    kicker: "AUTONOMOUS REASONING",
-    title: "Autonomous AI Agents",
-    metric: "Save 30+ hrs / wk",
-    text: "Multi-agent systems that autonomously triage inbound requests, reason through complex decisions, and execute multi-step business actions across your SaaS tools.",
-    tags: ["Tool Calling", "Loop Reasoning", "Human-in-the-Loop"],
-    accentClass: "scard-emerald",
-    featured: true,
-  },
-  {
-    icon: MessageCircle,
-    kicker: "24/7 OMNICHANNEL",
-    title: "Conversational & Voice Concierge",
-    metric: "< 600ms latency",
-    text: "Bespoke WhatsApp, web, and voice assistants tuned on your operational data that qualify leads, resolve customer support, and book meetings without robotic scripts.",
-    tags: ["WhatsApp Business API", "Voice AI", "Multi-lingual RAG"],
-    accentClass: "scard-gold",
-    featured: false,
-  },
-  {
-    icon: Workflow,
-    kicker: "OPERATIONAL THROUGHPUT",
-    title: "End-to-End Workflow Automation",
-    metric: "10x throughput",
-    text: "Connecting your CRM, ERP, spreadsheets, and databases into one intelligent pipeline. Eliminating manual data re-entry, status updates, and copy-paste errors.",
-    tags: ["n8n & Make Orchestration", "Bi-directional Sync", "Auto-Error Handling"],
-    accentClass: "scard-orange",
-    featured: false,
-  },
-  {
-    icon: FileText,
-    kicker: "VISION & OCR PARSER",
-    title: "Intelligent Document Processing",
-    metric: "99.8% extraction accuracy",
-    text: "Turn unformatted PDFs, invoices, vendor contracts, and claims into structured, verified database records in seconds — automatically reconciled against purchase orders.",
-    tags: ["Multi-modal OCR", "3-Way Reconciliation", "Fraud Checks"],
-    accentClass: "scard-emerald",
-    featured: false,
-  },
-  {
-    icon: Brain,
-    kicker: "ENTERPRISE KNOWLEDGE",
-    title: "Custom LLM & RAG Architectures",
-    metric: "Zero-retention privacy",
-    text: "Domain-specific Retrieval Augmented Generation architectures that let your team search, synthesize, and query proprietary operational knowledge safely.",
-    tags: ["Hybrid Vector Search", "Role-based Access", "Strict Guardrails"],
-    accentClass: "scard-gold",
-    featured: false,
-  },
-  {
-    icon: Layers,
-    kicker: "ZERO DOWNTIME BRIDGES",
-    title: "Enterprise System Integration",
-    metric: "Zero workflow downtime",
-    text: "Custom API microservices bridging legacy ERPs (NetSuite, SAP) with modern cloud platforms (HubSpot, Salesforce, Slack) without replacing your existing toolchain.",
-    tags: ["Legacy System Bridges", "Webhook Webnets", "Audit Logging"],
-    accentClass: "scard-orange",
-    featured: false,
-  },
-]
+import { ServicesSection } from "@/components/services-grid"
+import { IndustrySolutions } from "@/components/industry-solutions"
+import { TestimonialsSection } from "@/components/testimonials"
+import { ChatWidget } from "@/components/chat-widget"
 
 const faqs = [
   [
     "What kind of businesses does BarakahAI work with?",
-    "We specialize in high-growth B2B services, real estate, e-commerce, logistics, and agency teams that have 5 to 100+ team members bogged down by repetitive administrative workflows, lead qualification, or document reconciliation.",
+    "We work with growing service businesses, agencies, contractors, clinics, real estate firms, and distributors (5 to 100+ team members) bogged down by repetitive daily computer busywork, delayed customer replies, or messy paperwork.",
   ],
   [
-    "How fast can we see a working automation in production?",
-    "Our pilots move quickly: you receive an operational teardown in Week 1, a live interactive prototype by Week 2, and production deployment within 2 to 4 weeks. No six-month consulting roadmaps.",
+    "How fast can we see a working automation in our business?",
+    "Fast: we audit your biggest bottleneck in Week 1, deliver a working prototype in your environment by Week 2, and complete full setup within 2 to 4 weeks. No six-month consulting delays.",
   ],
   [
-    "Do we need to replace our current software tools?",
-    "No. We build directly on top of your existing software stack — HubSpot, Salesforce, Slack, Notion, PostgreSQL, NetSuite, Google Workspace, and WhatsApp. We connect and orchestrate, rather than disrupt.",
+    "Do we need to replace our current software or buy new tools?",
+    "No. We connect directly into the tools your team already uses every day — WhatsApp, Gmail, Google Sheets, Excel, Slack, and your current CRM or accounting software. You don't have to learn a complicated new platform.",
   ],
   [
-    "How do you prevent AI hallucinations or bad autonomous decisions?",
-    "We engineer deterministic guardrails: structured JSON schema validation, multi-step verification checks, strict RAG context boundaries, and human-in-the-loop approval thresholds for high-stakes actions (e.g. issuing refunds or sending contracts).",
+    "What happens if the AI makes a mistake?",
+    "We build human safety checkpoints into every sensitive action. For example, before an invoice is paid or an unusual refund is sent, someone on your team reviews and approves it with one click. The AI handles the tedious preparation work, while you stay in full control.",
   ],
   [
-    "How does your pricing model work?",
-    "We operate on fixed-scope pilot milestones with clear deliverable commitments, followed by transparent monthly optimization retainers. You know exactly what you are investing and what ROI to expect before writing a single check.",
+    "How does your pricing work?",
+    "We provide clear, fixed-price setup milestones with guaranteed deliverable commitments, followed by simple monthly maintenance and support. You know the exact cost and expected time savings before starting.",
   ],
   [
-    "What is your data security and privacy posture?",
-    "Your proprietary data is never used to train public models. We implement zero-retention enterprise API endpoints, encrypted secrets management, and role-based permissions adhering to SOC-2 compliance standards.",
+    "Is our company and customer data kept private?",
+    "Yes, 100%. Your business data is strictly yours and encrypted. We never use your customer lists, emails, or internal files to train public AI models.",
   ],
 ]
 
@@ -126,9 +58,11 @@ export default function Page() {
             <Logo variant="dark" height={42} />
           </Link>
           <nav className="dsite-nav" aria-label="Primary navigation">
-            <Link href="#services">Capabilities</Link>
-            <Link href="#process">Deployment Blueprint</Link>
-            <Link href="#calculator">ROI Calculator</Link>
+            <Link href="#comparison">The Difference</Link>
+            <Link href="#services">Services</Link>
+            <Link href="#products">Products</Link>
+            <Link href="#testimonials">Reviews</Link>
+            <Link href="#process">Blueprint</Link>
             <Link href="#faq">FAQ</Link>
           </nav>
           <Link className="btn-primary btn-sm btn-shimmer" href="#contact">
@@ -146,7 +80,7 @@ export default function Page() {
           <div className="hero-inner">
             <div className="hero-kicker-pill hero-load-kicker hero-load-item">
               <span className="kicker-pulse" />
-              <span>AI AUTOMATION & AUTONOMOUS SYSTEMS AGENCY</span>
+              <span>PRACTICAL AI AUTOMATION FOR GROWING BUSINESSES</span>
             </div>
 
             <h1 className="hero-load-title hero-load-item">
@@ -155,8 +89,8 @@ export default function Page() {
             </h1>
 
             <p className="hero-sub hero-load-sub hero-load-item">
-              BarakahAI designs, builds, and deploys production-grade AI agents and autonomous workflows
-              that eliminate manual busywork, slash response times, and scale your operations 24/7.
+              BarakahAI designs, builds, and deploys practical AI systems and automated workflows
+              that eliminate manual busywork, answer customers 24/7, and free your team to focus on growth.
             </p>
 
             <div className="hero-ctas hero-load-ctas hero-load-item">
@@ -168,161 +102,72 @@ export default function Page() {
               </Link>
             </div>
 
+            {/* Focused Delivery Badges */}
             <div className="trust-row hero-load-trust hero-load-item">
-              {[
-                "Enterprise Guardrails",
-                "Human-in-the-Loop Safeguards",
-                "Live in 2–4 Weeks",
-                "Zero Workflow Downtime",
-              ].map((t, idx) => (
-                <span
-                  key={t}
-                  className="trust-chip"
-                  style={{ animationDelay: `${0.62 + idx * 0.08}s` }}
-                >
-                  <CheckCircle2 size={13} /> {t}
-                </span>
-              ))}
+              <span className="trust-chip" style={{ animationDelay: "0.55s" }}>
+                <CheckCircle2 size={13} className="text-cyan" /> Live in 2–4 Weeks
+              </span>
+              <span className="trust-chip" style={{ animationDelay: "0.65s" }}>
+                <CheckCircle2 size={13} className="text-amber" /> 15+ Hours Saved / Wk
+              </span>
+              <span className="trust-chip" style={{ animationDelay: "0.75s" }}>
+                <CheckCircle2 size={13} className="text-indigo" /> Zero New Code to Learn
+              </span>
             </div>
           </div>
-
-          {/* Core Agency Impact Stats */}
-          <div className="stats-row hero-load-stats hero-load-item">
-            <div className="stats-laser-line" aria-hidden="true" />
-            {[
-              { target: 10, suffix: "x", l: "Faster Workflow Execution", decimals: 0 },
-              { target: 85, suffix: "%", l: "Manual Cost Reduction", decimals: 0 },
-              { target: 24, suffix: "/7", l: "Autonomous Uptime", decimals: 0 },
-              { target: 99.8, suffix: "%", l: "Extraction Precision", decimals: 1 },
-            ].map(({ target, suffix, l, decimals }, idx) => (
-              <div
-                key={l}
-                className="stat-box stat-box-load"
-                style={{ animationDelay: `${0.82 + idx * 0.08}s` }}
-              >
-                <strong className="stat-metric-num">
-                  <AnimatedCounter
-                    target={target}
-                    suffix={suffix}
-                    decimals={decimals}
-                    delay={350 + idx * 100}
-                    duration={1600}
-                  />
-                </strong>
-                <span className="stat-label">{l}</span>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ───── INTEGRATION MARQUEE ───── */}
-        <section className="reveal-item">
-          <IntegrationMarquee />
         </section>
 
         {/* ───── BEFORE / AFTER TRANSFORMATION ───── */}
-        <section className="section-wrap ba-section-wrap reveal-item">
+        <section className="section-wrap ba-section-wrap reveal-item" id="comparison">
           <div className="section-head reveal-item">
-            <span className="section-kicker">THE AGENCY ADVANTAGE</span>
+            <span className="section-kicker">WHY AUTOMATE WITH BARAKAHAI</span>
             <h2>
               Stop losing team hours to<br />
-              <span className="accent-text">repetitive operational drag.</span>
+              <span className="accent-text">repetitive daily busywork.</span>
             </h2>
             <p>
-              Most teams are trapped in copy-pasting between tabs, chasing status updates, and manually triaging data.
-              Here is what happens when BarakahAI automates the heavy lifting.
+              Most teams waste 15+ hours every week copy-pasting between tabs, answering repetitive questions,
+              and chasing updates. Here is what happens when BarakahAI handles the repetitive work.
             </p>
           </div>
 
           <BeforeAfter />
         </section>
 
-        {/* ───── SERVICES ───── */}
-        <section className="services-wrap section-wrap" id="services">
-          <div className="section-head reveal-item">
-            <span className="section-kicker">CORE CAPABILITIES</span>
-            <h2>
-              Practical intelligence,<br />
-              <span className="accent-text">engineered for your world.</span>
-            </h2>
-            <p>
-              From autonomous reasoning agents to 24/7 WhatsApp customer concierges —
-              we build high-performance systems that deliver measurable bottom-line ROI.
-            </p>
-            <Link className="text-link" href="#contact">
-              Discuss your company&apos;s bottlenecks <ArrowUpRight size={15} />
-            </Link>
-          </div>
+        {/* ───── OUR SERVICES (AI Solutions Built for Growth) ───── */}
+        <ServicesSection />
 
-          <div className="services-grid">
-            {services.map(({ icon: Icon, kicker, title, metric, text, tags, accentClass, featured }, i) => (
-              <article
-                className={`service-card ${accentClass} ${featured ? "is-featured" : ""} reveal-item`}
-                key={title}
-                style={{ transitionDelay: `${(i % 3) * 100}ms` }}
-              >
-                <div className="card-glow-edge" />
-                <div className="card-top-row">
-                  <div className="card-icon">
-                    <Icon size={22} strokeWidth={1.7} />
-                  </div>
-                  <div className="card-metric-pill">
-                    <span className="metric-glow-dot" />
-                    <span>{metric}</span>
-                  </div>
-                </div>
+        {/* ───── FLAGSHIP PRODUCTS (Built for Your Industry) ───── */}
+        <IndustrySolutions />
 
-                <span className="card-kicker">{kicker}</span>
-                <h3>{title}</h3>
-                <p>{text}</p>
+        {/* ───── TESTIMONIALS & SOCIAL PROOF ───── */}
+        <TestimonialsSection />
 
-                <div className="card-tags-list">
-                  {tags.map((tg) => (
-                    <span key={tg} className="card-tag-item">
-                      <span className="tag-hash">#</span>{tg}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="card-footer-link">
-                  <Link href="#contact" className="card-link">
-                    <span>Explore architecture</span>
-                    <ArrowUpRight size={14} className="card-link-icon" />
-                  </Link>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          <div className="also-build reveal-item delay-150">
-            <span>Specialized Custom Builds</span>
-            <p>Voice AI Agents · Multi-modal Vision Parsing · Self-Healing Scrapers · Real-time Telegram/WhatsApp B2B Portals</p>
-          </div>
+        {/* ───── TECH LOGO MARQUEE ───── */}
+        <section className="reveal-item">
+          <IntegrationMarquee />
         </section>
 
-        {/* ───── DEPLOYMENT BLUEPRINT (INTERACTIVE SCROLL-UP LIQUID SPINE ROADMAP) ───── */}
-        <ProcessRoadmap />
+        {/* ───── DEPLOYMENT BLUEPRINT (Process Roadmap) ───── */}
+        <div id="process">
+          <ProcessRoadmap />
+        </div>
 
-        {/* ───── INTERACTIVE ROI CALCULATOR ───── */}
-        <section className="calculator-section-wrap section-wrap reveal-item">
-          <AutomationCalculator />
-        </section>
-
-        {/* ───── PROOF / COMMITMENT ───── */}
+        {/* ───── AGENCY COMMITMENT & RISK-REVERSAL ───── */}
         <section className="proof-wrap">
           <div className="section-wrap">
             <div className="proof-card reveal-item">
               <div className="proof-glow" aria-hidden="true" />
               <div className="proof-kicker">
-                <Shield size={14} className="text-emerald-400" />
-                <span>OUR AGENCY COMMITMENT</span>
+                <Shield size={14} className="text-cyan-400" />
+                <span>OUR IRONCLAD PROMISE</span>
               </div>
               <h2>
                 We build our<br />
                 <em>proof in the open.</em>
               </h2>
               <p>
-                BarakahAI stands on transparent execution. Rather than inflated marketing claims,
+                BarakahAI stands on transparent execution. Rather than inflated marketing promises,
                 we design a scoped, low-risk pilot in your environment and earn the right to automate your core business.
               </p>
               <div className="proof-ctas">
@@ -332,8 +177,8 @@ export default function Page() {
               </div>
               <div className="proof-chips">
                 <span><Shield size={13} /> Strict zero-data retention</span>
-                <span><Clock size={13} /> Staging prototype in 7 days</span>
-                <span><Users size={13} /> Direct access to senior AI engineers</span>
+                <span><Clock size={13} /> Working prototype in 7–14 days</span>
+                <span><Users size={13} /> Direct access to senior builders</span>
               </div>
             </div>
           </div>
@@ -362,7 +207,7 @@ export default function Page() {
           </div>
         </section>
 
-        {/* ───── CONTACT ───── */}
+        {/* ───── CONTACT & STRATEGY CALL ROADMAP ───── */}
         <section className="contact-wrap section-wrap" id="contact">
           <div className="contact-intro reveal-item">
             <span className="section-kicker">GET IN TOUCH</span>
@@ -372,8 +217,37 @@ export default function Page() {
             </h2>
             <p>
               Tell us what is slowing your team down or eating your weekend hours.
-              We will review your operational stack and provide a concrete, actionable automation roadmap.
+              We will review your operational setup and provide a concrete, actionable automation roadmap.
             </p>
+
+            {/* What to Expect on Call Friction Reducer */}
+            <div className="call-roadmap-card">
+              <h4>What to Expect on Your Free Call</h4>
+              <div className="call-steps-list">
+                <div className="call-step-item">
+                  <span className="call-step-num">1</span>
+                  <div>
+                    <strong>15-Minute Operational Audit</strong>
+                    <p>We map your team&apos;s single biggest manual bottleneck or spreadsheet drag.</p>
+                  </div>
+                </div>
+                <div className="call-step-item">
+                  <span className="call-step-num">2</span>
+                  <div>
+                    <strong>Candid Feasibility &amp; ROI Check</strong>
+                    <p>We calculate honestly if custom AI makes financial sense for your volume.</p>
+                  </div>
+                </div>
+                <div className="call-step-item">
+                  <span className="call-step-num">3</span>
+                  <div>
+                    <strong>Custom Deployment Blueprint</strong>
+                    <p>You receive an actionable workflow architecture you keep regardless.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div className="contact-info">
               <a href="mailto:hello@barakahai.com">
                 <Mail size={16} /> hello@barakahai.com
@@ -383,15 +257,15 @@ export default function Page() {
 
             <div className="contact-guarantees">
               <div className="c-guarantee">
-                <CheckCircle2 size={14} className="text-emerald-400" />
-                <span>No high-pressure sales pitch</span>
+                <CheckCircle2 size={14} className="text-cyan-400" />
+                <span>Zero high-pressure sales pitch</span>
               </div>
               <div className="c-guarantee">
-                <CheckCircle2 size={14} className="text-emerald-400" />
-                <span>NDA signed upfront upon request</span>
+                <CheckCircle2 size={14} className="text-cyan-400" />
+                <span>Mutual NDA signed upfront upon request</span>
               </div>
               <div className="c-guarantee">
-                <CheckCircle2 size={14} className="text-emerald-400" />
+                <CheckCircle2 size={14} className="text-cyan-400" />
                 <span>Custom architecture assessment included</span>
               </div>
             </div>
@@ -419,8 +293,8 @@ export default function Page() {
                 <input name="company" type="text" placeholder="Acme Logistics Inc." />
               </label>
               <label>
-                Primary software stack
-                <input name="stack" type="text" placeholder="e.g. HubSpot, Slack, PostgreSQL" />
+                Primary software tools you use
+                <input name="stack" type="text" placeholder="e.g. WhatsApp, HubSpot, Slack, Google Sheets" />
               </label>
             </div>
             <label>
@@ -428,7 +302,7 @@ export default function Page() {
               <textarea
                 name="message"
                 rows={4}
-                placeholder="e.g. Inbound leads take 6 hours to get qualified, or we spend 15 hours/week cross-checking vendor invoice PDFs with NetSuite..."
+                placeholder="e.g. Inbound leads take 6 hours to get qualified, or we spend 15 hours every week manually cross-checking vendor invoice PDFs..."
                 required
               />
             </label>
@@ -436,7 +310,7 @@ export default function Page() {
               <button className="btn-primary" type="submit">
                 Request Free Automation Audit <ArrowUpRight size={17} />
               </button>
-              <span>Practical discussion with senior engineers. No aggressive follow-ups.</span>
+              <span>Direct discussion with senior automation architects. No aggressive follow-ups.</span>
             </div>
           </form>
         </section>
@@ -450,15 +324,17 @@ export default function Page() {
               </Link>
               <p>
                 Production AI systems & autonomous workflows built with intention.<br />
-                Eliminating manual friction so high-growth teams can scale with leverage.
+                Eliminating manual friction so growing teams can scale with leverage.
               </p>
             </div>
             <div className="footer-links">
               <div>
                 <span>Navigation</span>
-                <Link href="#services">Capabilities</Link>
+                <Link href="#comparison">The Difference</Link>
+                <Link href="#services">Services</Link>
+                <Link href="#products">Products</Link>
+                <Link href="#testimonials">Reviews</Link>
                 <Link href="#process">Deployment Blueprint</Link>
-                <Link href="#calculator">ROI Calculator</Link>
                 <Link href="#faq">FAQ</Link>
               </div>
               <div>
@@ -479,6 +355,9 @@ export default function Page() {
             </div>
           </div>
         </footer>
+
+        {/* ───── FLOATING BOTTOM-RIGHT CHAT WIDGET ───── */}
+        <ChatWidget />
 
       </main>
     </ScrollRevealProvider>

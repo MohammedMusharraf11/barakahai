@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react"
 import Image from "next/image"
-import { MessageSquare, Zap, Check, Sparkles } from "lucide-react"
+import { MessageSquare, Zap, Check } from "lucide-react"
 
 export function HeroWorkflow() {
   const [activeStep, setActiveStep] = useState<number>(1)
@@ -60,7 +60,6 @@ export function HeroWorkflow() {
       {/* Top Scrim Header: System tag + Ready to work */}
       <div className="hero-top-scrim">
         <div className="visual-system-tag">
-          <Sparkles size={12} className="inline mr-1.5 text-[var(--gold-500)]" />
           BARAKAH / SYSTEM 001
         </div>
         <div className="visual-status-pill">

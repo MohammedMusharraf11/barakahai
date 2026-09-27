@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react"
 import Link from "next/link"
-import { ArrowUpRight, Check, UserRound, Sparkles, Compass } from "lucide-react"
+import { ArrowUpRight, Check, UserRound, Compass } from "lucide-react"
 import { roadmapSteps } from "@/content/process"
 
 export function ProcessRoadmap() {
@@ -280,7 +280,6 @@ export function ProcessRoadmap() {
                   </div>
                   <div className="callout-text">
                     <span className="callout-kicker">
-                      <Sparkles size={12} className="inline mr-1 text-[var(--gold-500)]" />
                       DECISION GATE
                     </span>
                     <h4>Go / no-go checkpoint</h4>
