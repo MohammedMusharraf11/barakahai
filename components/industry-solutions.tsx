@@ -127,9 +127,14 @@ export function IndustrySolutions() {
 
       {/* Single Clean Centered CTA */}
       <div className="products-clean-cta reveal-item">
-        <Link className="btn-primary btn-shimmer" href="#contact">
+        <a
+          className="btn-primary btn-shimmer"
+          href="https://cal.com/mush4rr4f-gjfryw/15min"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Deploy a Tool in Your Business <ArrowUpRight size={16} />
-        </Link>
+        </a>
         <span className="cta-caption">Live in 2–4 weeks · Scoped pilot with guaranteed delivery</span>
       </div>
     </section>

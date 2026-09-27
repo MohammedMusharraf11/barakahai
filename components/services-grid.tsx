@@ -2,65 +2,72 @@
 
 import React from "react"
 import {
-  Cpu,
-  Bot,
-  MessageCircle,
-  PhoneCall,
-  Mic,
-  Video,
   FileText,
   BarChart3,
-  ArrowRight,
+  UserCheck,
+  Globe,
+  Bot,
+  MessageCircle,
+  Video,
+  Cpu,
 } from "lucide-react"
 
 export const servicesData = [
   {
-    icon: Cpu,
-    title: "Autonomous Task Agents",
-    text: "Put repetitive multi-step computer tasks on autopilot — syncing customer info, updating spreadsheets, and routing files without manual babysitting.",
+    icon: FileText,
+    title: "Document Intelligence",
+    tagline: "Your Organisation's Knowledge. One Assistant.",
+    text: "Transform your organisation's documents into an intelligent AI knowledge assistant. Search company information and get context-aware answers with exact source citations.",
     accent: "cyan",
   },
   {
+    icon: BarChart3,
+    title: "Natural Language Analytics",
+    tagline: "Ask Your Data. Get Instant Insights.",
+    text: "Make data-driven decisions without writing code. Convert plain English questions like 'Show me sales in March' into automated queries, interactive dashboards, and reports.",
+    accent: "amber",
+  },
+  {
+    icon: UserCheck,
+    title: "Recruitment Buddy",
+    tagline: "Smarter Hiring. Faster Decisions.",
+    text: "Simplify hiring with AI-powered resume screening, explainable candidate matching scores, automated interview scheduling, and HR-approved offer letters.",
+    accent: "purple",
+  },
+  {
+    icon: Globe,
+    title: "Website Design & Development",
+    tagline: "Your Vision. Our Technology.",
+    text: "Establish a powerful digital presence with modern, responsive, and SEO-friendly corporate websites, e-commerce stores, and web applications with built-in AI chatbots.",
+    accent: "blue",
+  },
+  {
     icon: Bot,
-    title: "24/7 Website Chatbots",
-    text: "Answer customer inquiries the second they land on your site, answer common questions accurately, and collect qualified leads while you sleep.",
-    accent: "sky",
+    title: "24/7 AI Website Chatbots",
+    tagline: "Engage Visitors. Capture Leads.",
+    text: "Turn your website into an always-available customer assistant. Instantly answer enquiries from your website content, qualify leads, and book consultations 24/7.",
+    accent: "cyan",
   },
   {
     icon: MessageCircle,
     title: "WhatsApp Automation",
-    text: "Turn incoming WhatsApp messages into booked appointments, answered customer questions, and captured orders automatically.",
+    tagline: "Automate Conversations. Accelerate Growth.",
+    text: "Transform WhatsApp into an intelligent business channel. Automate customer enquiries, capture leads, schedule appointments, and send order updates effortlessly.",
     accent: "blue",
-  },
-  {
-    icon: PhoneCall,
-    title: "AI Phone Calling Agents",
-    text: "Friendly, natural-sounding voice calls to confirm appointments, follow up with new inquiries, and send reminders so no customer is lost.",
-    accent: "amber",
-  },
-  {
-    icon: Mic,
-    title: "Front-Desk Voice AI",
-    text: "Voice assistants that answer front-desk calls, handle routine customer questions, and smoothly transfer high-priority calls to your staff.",
-    accent: "purple",
   },
   {
     icon: Video,
-    title: "Automated Video Creation",
-    text: "Generate customer walkthroughs, training clips, and marketing videos in minutes without hiring an expensive video production team.",
+    title: "AI Video Creation & Marketing",
+    tagline: "Your Products. Brought to Life with AI.",
+    text: "Transform product images into engaging cinematic advertisements, Instagram Reels, and YouTube Shorts with natural AI voiceovers without expensive studio setups.",
     accent: "rose",
   },
   {
-    icon: FileText,
-    title: "Document & Invoice AI",
-    text: "Stop typing invoice numbers by hand. Automatically read PDF bills, vendor receipts, and contracts, and save them straight to your books.",
-    accent: "blue",
-  },
-  {
-    icon: BarChart3,
-    title: "Ask-Your-Data Analytics",
-    text: "Ask simple questions in plain English like 'What were our sales this month?' and get clear visual charts without needing to write any code.",
-    accent: "gold",
+    icon: Cpu,
+    title: "Autonomous Task Agents",
+    tagline: "Automate Repetitive Tasks. Empower Teams.",
+    text: "Put operations on autopilot. Execute multi-step workflows, sync customer data across CRMs and spreadsheets, process files, and route tasks with human approval.",
+    accent: "amber",
   },
 ]
 
@@ -68,16 +75,16 @@ export function ServicesSection() {
   return (
     <section className="services-growth-wrap section-wrap" id="services">
       <div className="section-head reveal-item">
-        <span className="services-kicker-cyan">WHAT WE BUILD FOR YOU</span>
+        <span className="services-kicker-cyan">USE CASES &amp; SOLUTIONS</span>
         <h2>AI Solutions Built for Real Business Work</h2>
         <p>
-          No complicated technology setups. We install practical automation systems that save your team
-          10 to 20+ hours of manual computer work every week.
+          Practical, production-ready AI systems tailored to your workflows — designed to eliminate
+          repetitive computer friction and help your business scale efficiently.
         </p>
       </div>
 
       <div className="services-growth-grid">
-        {servicesData.map(({ icon: Icon, title, text, accent }, i) => (
+        {servicesData.map(({ icon: Icon, title, tagline, text, accent }, i) => (
           <article
             className={`service-growth-card accent-${accent} reveal-item`}
             key={title}

@@ -135,7 +135,7 @@ export function ProcessRoadmap() {
             <span className="day0-dot">
               <span className="day0-ping" />
             </span>
-            <span className="day0-label">Day 0: 15-minute quick discovery call</span>
+            <span className="day0-label">Day 0: 45-minute discovery call</span>
           </div>
 
           {/* Stepped Process List */}
@@ -179,11 +179,7 @@ export function ProcessRoadmap() {
                 </article>
               </div>
 
-              {/* Laser Connector */}
-              <div className="roadmap-connector" aria-hidden="true">
-                <div className="connector-laser laser-left" />
-                <div className="connector-dock-dot dock-left" />
-              </div>
+
 
               {/* Node on Spine */}
               <div className="roadmap-node-col">
@@ -222,11 +218,7 @@ export function ProcessRoadmap() {
                 </button>
               </div>
 
-              {/* Laser Connector */}
-              <div className="roadmap-connector" aria-hidden="true">
-                <div className="connector-laser laser-right" />
-                <div className="connector-dock-dot dock-right" />
-              </div>
+
 
               <div className="roadmap-card-col">
                 <article
@@ -291,11 +283,7 @@ export function ProcessRoadmap() {
                 </aside>
               </div>
 
-              {/* Gate Connector */}
-              <div className="gate-connector" aria-hidden="true">
-                <div className="connector-laser laser-left" />
-                <div className="connector-dock-dot dock-left" />
-              </div>
+
 
               {/* Diamond Node on Spine */}
               <div className="gate-node-col">
@@ -358,11 +346,7 @@ export function ProcessRoadmap() {
                 </article>
               </div>
 
-              {/* Laser Connector */}
-              <div className="roadmap-connector" aria-hidden="true">
-                <div className="connector-laser laser-left" />
-                <div className="connector-dock-dot dock-left" />
-              </div>
+
 
               {/* Node on Spine */}
               <div className="roadmap-node-col">
@@ -401,11 +385,7 @@ export function ProcessRoadmap() {
                 </button>
               </div>
 
-              {/* Laser Connector */}
-              <div className="roadmap-connector" aria-hidden="true">
-                <div className="connector-laser laser-right" />
-                <div className="connector-dock-dot dock-right" />
-              </div>
+
 
               <div className="roadmap-card-col">
                 <article
@@ -456,13 +436,18 @@ export function ProcessRoadmap() {
 
         {/* Primary CTA on Dark background: gold-500 fill with ink text */}
         <div className="roadmap-cta-wrap">
-          <Link className="button button-gold-dark group" href="#contact">
-            Book a Free 15-Minute Audit{" "}
+          <a
+            className="button button-gold-dark group"
+            href="https://cal.com/mush4rr4f-gjfryw/15min"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Book a Free 45-Minute Audit{" "}
             <ArrowUpRight
               size={17}
               className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
             />
-          </Link>
+          </a>
         </div>
       </div>
     </section>

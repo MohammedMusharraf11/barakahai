@@ -28,7 +28,7 @@ const defaultSuggestions = [
   "What can you automate for me?",
   "How much does it cost?",
   "How fast can we get started?",
-  "Book a 15-min strategy call",
+  "Book a 45-min strategy call",
 ]
 
 const cannedReplies: Record<string, string> = {
@@ -39,7 +39,7 @@ const cannedReplies: Record<string, string> = {
   automate:
     "We automate repetitive computer tasks — answering customer WhatsApp messages in 20 seconds, reading invoice PDFs without manual typing, answering employee questions using your company guides, and turning plain English questions into sales charts.",
   call:
-    "You can schedule a free, zero-pressure 15-minute automation audit directly on this page! Just scroll down to our contact form, email us at info@barakahai.com, or call us at +91 90366 00668.",
+    "You can schedule a free 45-minute automation audit directly on our Cal.com booking link, email us at info@barakahai.com, or call +91 90366 00668.",
 }
 
 export function ChatWidget() {
@@ -47,6 +47,10 @@ export function ChatWidget() {
   const [showPill, setShowPill] = useState(true)
   const [input, setInput] = useState("")
   const [isTyping, setIsTyping] = useState(false)
+  const [isScrolling, setIsScrolling] = useState(false)
+  const [isBlinking, setIsBlinking] = useState(false)
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "m-welcome",
@@ -57,6 +61,33 @@ export function ChatWidget() {
   ])
 
   const messagesEndRef = useRef<HTMLDivElement>(null)
+
+  // Gentle scroll detection
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolling(true)
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current)
+      scrollTimeoutRef.current = setTimeout(() => {
+        setIsScrolling(false)
+      }, 250)
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current)
+    }
+  }, [])
+
+  // Natural subtle eye blink every 4 seconds
+  useEffect(() => {
+    const blinkTimer = setInterval(() => {
+      setIsBlinking(true)
+      setTimeout(() => setIsBlinking(false), 180)
+    }, 4000)
+
+    return () => clearInterval(blinkTimer)
+  }, [])
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -84,7 +115,7 @@ export function ChatWidget() {
 
     setTimeout(() => {
       let reply =
-        "Thank you for asking! We build tailored automation systems directly into your existing tools (WhatsApp, Gmail, spreadsheets). Would you like to schedule a quick 15-minute strategy call with our team?"
+        "Thank you for asking! We build tailored automation systems directly into your existing tools (WhatsApp, Gmail, spreadsheets). Would you like to schedule a 45-minute strategy call with our team?"
 
       const lower = text.toLowerCase()
       if (lower.includes("cost") || lower.includes("price") || lower.includes("pricing") || lower.includes("fee")) {
@@ -265,7 +296,7 @@ export function ChatWidget() {
       {/* Floating Launcher Button */}
       <button
         type="button"
-        className={`chat-launcher-btn ${isOpen ? "open" : ""}`}
+        className={`chat-launcher-btn ${isOpen ? "open" : ""} ${isScrolling ? "is-scrolling" : ""}`}
         onClick={handleToggle}
         aria-label={isOpen ? "Close chat" : "Chat with Arfa"}
       >
@@ -282,6 +313,10 @@ export function ChatWidget() {
               className="launcher-avatar-img"
               priority
             />
+            {/* Subtle natural blinking eyelids */}
+            <div className={`arfa-eyelid arfa-eyelid-left ${isBlinking ? "blink" : ""}`} aria-hidden="true" />
+            <div className={`arfa-eyelid arfa-eyelid-right ${isBlinking ? "blink" : ""}`} aria-hidden="true" />
+
             <span className="launcher-online-dot" />
           </div>
         )}

@@ -1,7 +1,8 @@
 {
-  "name": "my-project",
-  "version": "0.1.0",
+  "name": "barakahai",
+  "version": "1.0.0",
   "private": true,
+  "description": "BarakahAI — Practical AI Automation Systems for Growing Businesses",
   "packageManager": "pnpm@12.3.4",
   "scripts": {
     "dev": "next dev",
@@ -12,6 +13,7 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",
+    "@calcom/embed-react": "^1.5.3",
     "@vercel/analytics": "1.6.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
