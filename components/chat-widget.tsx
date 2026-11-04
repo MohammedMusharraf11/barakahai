@@ -79,14 +79,48 @@ export function ChatWidget() {
     }
   }, [])
 
-  // Natural subtle eye blink every 4 seconds
+  // Natural, lifelike eye blink with randomized interval and organic timing
   useEffect(() => {
-    const blinkTimer = setInterval(() => {
-      setIsBlinking(true)
-      setTimeout(() => setIsBlinking(false), 180)
-    }, 4000)
+    let timeoutId: NodeJS.Timeout
+    let blinkEndTimeout: NodeJS.Timeout
+    let doubleBlinkTimeout: NodeJS.Timeout
+    let doubleBlinkEndTimeout: NodeJS.Timeout
 
-    return () => clearInterval(blinkTimer)
+    const scheduleNext = () => {
+      // Human blinking interval varies naturally between 3.2s and 6s
+      const delay = 3200 + Math.random() * 2800
+      timeoutId = setTimeout(triggerBlink, delay)
+    }
+
+    const triggerBlink = () => {
+      // Natural human blink duration is around 140-160ms
+      setIsBlinking(true)
+      blinkEndTimeout = setTimeout(() => {
+        setIsBlinking(false)
+
+        // ~20% chance of a realistic quick double-blink (common in human gaze behavior)
+        if (Math.random() < 0.2) {
+          doubleBlinkTimeout = setTimeout(() => {
+            setIsBlinking(true)
+            doubleBlinkEndTimeout = setTimeout(() => {
+              setIsBlinking(false)
+              scheduleNext()
+            }, 130)
+          }, 110)
+        } else {
+          scheduleNext()
+        }
+      }, 150)
+    }
+
+    scheduleNext()
+
+    return () => {
+      clearTimeout(timeoutId)
+      clearTimeout(blinkEndTimeout)
+      clearTimeout(doubleBlinkTimeout)
+      clearTimeout(doubleBlinkEndTimeout)
+    }
   }, [])
 
   useEffect(() => {
@@ -175,6 +209,14 @@ export function ChatWidget() {
                   height={38}
                   className="chat-avatar-img"
                   priority
+                />
+                <Image
+                  src="/arfa-blink.jpg"
+                  alt=""
+                  width={38}
+                  height={38}
+                  className={`chat-avatar-blink ${isBlinking ? "is-blinking" : ""}`}
+                  aria-hidden="true"
                 />
                 <span className="online-indicator" />
               </div>
@@ -313,10 +355,16 @@ export function ChatWidget() {
               className="launcher-avatar-img"
               priority
             />
-            {/* Subtle natural blinking eyelids */}
-            <div className={`arfa-eyelid arfa-eyelid-left ${isBlinking ? "blink" : ""}`} aria-hidden="true" />
-            <div className={`arfa-eyelid arfa-eyelid-right ${isBlinking ? "blink" : ""}`} aria-hidden="true" />
-
+            {/* Seamless, photorealistic eye blink overlay */}
+            <Image
+              src="/arfa-blink.jpg"
+              alt=""
+              width={56}
+              height={56}
+              className={`launcher-avatar-blink ${isBlinking ? "is-blinking" : ""}`}
+              aria-hidden="true"
+              priority
+            />
             <span className="launcher-online-dot" />
           </div>
         )}

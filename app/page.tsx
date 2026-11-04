@@ -89,11 +89,6 @@ export default function Page() {
           <div className="grid-bg" aria-hidden="true" />
 
           <div className="hero-inner">
-            <div className="hero-kicker-pill hero-load-kicker hero-load-item">
-              <span className="kicker-pulse" />
-              <span>PRACTICAL AI AUTOMATION FOR GROWING BUSINESSES</span>
-            </div>
-
             <h1 className="hero-load-title hero-load-item">
               Your business,<br />
               running on <em className="aurora-text">autopilot.</em>

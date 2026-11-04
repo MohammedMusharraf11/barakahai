@@ -288,13 +288,14 @@ button, a { -webkit-tap-highlight-color: transparent; cursor: pointer; }
    ════════════════════════════════════════════ */
 .hero-wrap {
   position: relative;
-  padding: clamp(150px, 18vh, 200px) 0 80px;
+  min-height: calc(100vh - 72px);
+  padding: clamp(36px, 5vh, 60px) 0 clamp(36px, 5vh, 52px);
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 52px;
   overflow: hidden;
-  scroll-margin-top: 100px;
+  scroll-margin-top: 80px;
 }
 
 
@@ -483,7 +484,7 @@ button, a { -webkit-tap-highlight-color: transparent; cursor: pointer; }
   line-height: 1.68;
   color: var(--t-mid);
   max-width: 640px;
-  margin-bottom: 36px;
+  margin-bottom: 26px;
   animation: hero-fade-rise 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
 }
 
@@ -493,7 +494,7 @@ button, a { -webkit-tap-highlight-color: transparent; cursor: pointer; }
   justify-content: center;
   flex-wrap: wrap;
   gap: 14px;
-  margin-bottom: 28px;
+  margin-bottom: 22px;
   animation: hero-fade-rise 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.58s both;
 }
 
@@ -3263,7 +3264,7 @@ body.js-reveal-ready .reveal-from-top:not(.is-revealed) {
   .dsite-header { height: 62px; }
   .dsite-nav { display: none; }
 
-  .hero-wrap { padding: 60px 0 40px; gap: 36px; }
+  .hero-wrap { padding: 40px 0 36px; min-height: auto; }
   .hero-wrap h1 { font-size: 38px; }
 
   .stats-row { grid-template-columns: repeat(2, 1fr); }
@@ -3440,9 +3441,11 @@ body.js-reveal-ready .reveal-from-top:not(.is-revealed) {
   flex-shrink: 0;
 }
 .chat-avatar-img {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
 }
 .online-indicator {
   position: absolute;
@@ -3717,37 +3720,43 @@ body.js-reveal-ready .reveal-from-top:not(.is-revealed) {
   justify-content: center;
 }
 
-/* ── Subtle Natural Eye Blinking ── */
-.arfa-eyelid {
+/* ── Photorealistic AI Companion Eye Blink ── */
+.launcher-avatar-blink {
   position: absolute;
-  background: #cf9376;
-  border-bottom: 1.5px solid #231610;
-  border-radius: 50% 50% 45% 45%;
+  top: 1px;
+  left: 1px;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  object-fit: cover;
+  opacity: 0;
   pointer-events: none;
-  transform: scaleY(0);
-  transform-origin: top center;
-  transition: transform 0.08s ease-in-out;
-  z-index: 10;
-  box-shadow: inset 0 -1px 2px rgba(60, 30, 15, 0.35);
+  transition: opacity 0.08s ease-in-out;
+  z-index: 2;
+  will-change: opacity;
 }
 
-.arfa-eyelid-left {
-  top: 31%;
-  left: 41%;
-  width: 14%;
-  height: 8.5%;
+.launcher-avatar-blink.is-blinking {
+  opacity: 1;
 }
 
-.arfa-eyelid-right {
-  top: 33%;
-  left: 58.5%;
-  width: 14%;
-  height: 8.5%;
+.chat-avatar-blink {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.08s ease-in-out;
+  z-index: 2;
+  will-change: opacity;
 }
 
-.arfa-eyelid.blink,
-.launcher-avatar-wrap.is-blinking .arfa-eyelid {
-  transform: scaleY(1);
+.chat-avatar-blink.is-blinking {
+  opacity: 1;
 }
 
 .chat-bubble-avatar-box {
