@@ -25,7 +25,7 @@ export function Logo({
     >
       {/* 3D Emblem Symbol from logo_v1.png */}
       <div
-        className="relative flex items-center justify-center flex-shrink-0 transition-transform duration-300 ease-out group-hover:scale-108 group-hover:rotate-1"
+        className="logo-mark relative flex items-center justify-center flex-shrink-0 transition-transform duration-300 ease-out group-hover:scale-108 group-hover:rotate-1"
         style={{ width: iconWidth, height: iconHeight }}
       >
         <Image
@@ -41,7 +41,7 @@ export function Logo({
       {/* Typography Wordmark */}
       <div className="flex flex-col justify-center leading-none">
         <span
-          className="font-bold tracking-tight text-white flex items-center transition-colors duration-200"
+          className="logo-text font-bold tracking-tight text-white flex items-center transition-colors duration-200"
           style={{
             fontSize: Math.round(height * 0.56),
             fontFamily: "var(--font-outfit, 'Outfit', sans-serif)",

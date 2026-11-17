@@ -53,9 +53,26 @@ const faqs = [
   ],
 ]
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(([q, a]) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: a,
+    },
+  })),
+}
+
 export default function Page() {
   return (
     <ScrollRevealProvider>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <main className="dark-site">
 
         {/* ───── STICKY HEADER ───── */}
@@ -72,12 +89,15 @@ export default function Page() {
             <Link href="#faq">FAQ</Link>
           </nav>
           <a
-            className="btn-primary btn-sm btn-shimmer"
+            className="btn-primary btn-sm btn-shimmer header-cta-btn"
             href={CAL_BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Book a strategy call with BarakahAI"
           >
-            Book Strategy Call <ArrowUpRight size={14} />
+            <span className="desktop-text">Book Strategy Call</span>
+            <span className="mobile-text">Book Call</span>
+            <ArrowUpRight size={14} className="flex-shrink-0" />
           </a>
         </header>
 
